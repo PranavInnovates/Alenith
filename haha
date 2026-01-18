@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alenith - Where Nightmares Come Alive</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="interactive-bg">
+  <canvas id="horror-canvas"></canvas>
+  <div class="fog-overlay"></div>
+  <div class="shadow-overlay"></div>
+</div>
+
+<header class="nav">
+  <div class="brand">Alenith</div>
+  <button class="mobile-menu-toggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav class="nav-menu">
+    <a href="#about">About</a>
+    <a href="#games">Games</a>
+    <a href="#support">Support</a>
+    <a href="#community">Community</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section id="about" class="hero-section">
+    <div class="hero-content">
+      <h1>Alenith</h1>
+      <p class="tagline">Crafting nightmares into unforgettable experiences</p>
+      
+      <div class="story">
+        <p>We are three dreamers who refuse to sleep. In the depths of sleepless nights, we forge worlds where darkness tells stories and fear becomes art.</p>
+        
+        <p>No corporate backing. No endless budgets. Just pure passion bleeding into every pixel, every sound, every terrifying moment.</p>
+        
+        <p class="emphasis">What we lack in resources, we make up for in soul.</p>
+        
+        <p>Our upcoming masterpiece, <span class="highlight">Hansel & Gretel</span>, isn't just a game—it's a descent into psychological horror that will haunt your dreams long after you've stopped playing.</p>
+      </div>
+
+      <div class="cta-buttons">
+        <a href="#games" class="btn-primary">Enter Our World</a>
+        <a href="#support" class="btn-secondary">Join the Darkness</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="games" class="games-section">
+    <h2>Our Dark Creations</h2>
+    <p class="section-intro">Each game is a step deeper into the abyss of interactive storytelling.</p>
+
+    <div class="game-grid">
+      <div class="game-card">
+        <div class="game-icon">🐼</div>
+        <h3>Lost Panda</h3>
+        <p>Our first venture into the unknown—a haunting tale of innocence lost in digital shadows.</p>
+        <a href="#" class="game-link">Experience on itch.io</a>
+      </div>
+
+      <div class="game-card">
+        <div class="game-icon">📱</div>
+        <h3>Mobile Nightmares</h3>
+        <p>Pocket-sized terror that follows you everywhere. Horror that fits in your palm.</p>
+        <a href="#" class="game-link">Download the Fear</a>
+      </div>
+
+      <div class="game-card featured">
+        <div class="game-icon">🌲</div>
+        <h3>Hansel & Gretel</h3>
+        <p>A psychological reimagining of childhood's darkest fairy tale. Where breadcrumbs lead to madness and gingerbread houses hide unspeakable horrors.</p>
+        <div class="status">In Development</div>
+        <p class="game-description">Every shadow hides a secret. Every choice echoes in the darkness. This isn't the story you remember—this is the story that remembers you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="support-section">
+    <h2>Feed the Nightmare</h2>
+    <p class="section-intro">Independent horror lives on the edge of extinction. Your support keeps the darkness alive.</p>
+    
+    <div class="support-content">
+      <div class="support-story">
+        <p>Creating horror games is like walking a tightrope over an abyss. One misstep, and years of work vanish into the void.</p>
+        
+        <p>Every month, we face the same demons:</p>
+        <ul class="demon-list">
+          <li>Survival vs. Creation</li>
+          <li>Reality vs. Vision</li>
+          <li>Fear vs. Hope</li>
+        </ul>
+        
+        <p class="support-quote">"Even $1 whispers to us in the dark: <em>Keep creating.</em>"</p>
+      </div>
+
+      <div class="patron-tiers">
+        <h3>Join Our Coven</h3>
+        
+        <div class="tier-grid">
+          <div class="tier">
+            <h4>Shadow Walker - $1</h4>
+            <ul>
+              <li>Our eternal gratitude from the depths</li>
+              <li>Name etched in our supporter shrine</li>
+              <li>Whispers of development secrets</li>
+            </ul>
+          </div>
+
+          <div class="tier">
+            <h4>Nightmare Keeper - $5</h4>
+            <ul>
+              <li>All Shadow Walker benefits</li>
+              <li>Exclusive behind-the-screams content</li>
+              <li>Early glimpses into the abyss</li>
+              <li>Discord role of the damned</li>
+            </ul>
+          </div>
+
+          <div class="tier">
+            <h4>Soul Binder - $10</h4>
+            <ul>
+              <li>All previous dark gifts</li>
+              <li>Beta access to our nightmares</li>
+              <li>Voice in the creative darkness</li>
+              <li>Direct line to the developers' minds</li>
+            </ul>
+          </div>
+
+          <div class="tier">
+            <h4>Dark Lord - $25</h4>
+            <ul>
+              <li>Everything from the shadows above</li>
+              <li>Immortalized in game credits</li>
+              <li>Shape the future of Alenith's darkness</li>
+              <li>Private audience with the creators</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="community-section">
+    <h2>The Gathering</h2>
+    <p class="section-intro">You're not just a player—you're part of our dark family.</p>
+
+    <div class="community-content">
+      <div class="community-story">
+        <p>In the shadows of the internet, we've built something special. A place where horror enthusiasts, game developers, and storytellers unite.</p>
+        
+        <p>We don't just make games—we build relationships. Every message matters. Every question deserves an answer. Every fan becomes family.</p>
+      </div>
+
+      <div class="social-grid">
+        <div class="social-card">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <h4>Instagram</h4>
+          <p>Dark art and development glimpses</p>
+          <a href="#">@alenithverse</a>
+        </div>
+
+        <div class="social-card">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          </div>
+          <h4>TikTok</h4>
+          <p>Quick scares and dev moments</p>
+          <a href="#">@alenith_horror</a>
+        </div>
+
+        <div class="social-card">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <h4>YouTube</h4>
+          <p>Deep dives into our nightmares</p>
+          <a href="#">Alenith Studios</a>
+        </div>
+
+        <div class="social-card featured">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+              <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0002 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9554 2.4189-2.1568 2.4189Z"/>
+            </svg>
+          </div>
+          <h4>Discord</h4>
+          <p>Our digital haunted house</p>
+          <a href="#">Join the Darkness</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+:root {
+  --primary-orange: #fda742;
+  --primary-teal: #027578;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --glass-bg: rgba(255, 255, 255, 0.005);
+  --glass-border: rgba(253, 167, 66, 0.015);
+  --glass-hover: rgba(253, 167, 66, 0.02);
+  --teal-glass: rgba(2, 117, 120, 0.015);
+  --shadow-deep: rgba(0, 0, 0, 0.6);
+  --glow-orange: rgba(253, 167, 66, 0.4);
+  --glow-teal: rgba(2, 117, 120, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  background: #050505;
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-3px, 3px) rotate(-0.8deg); }
+  20% { transform: translate(3px, -3px) rotate(0.8deg); }
+  30% { transform: translate(-4px, 2px) rotate(-1deg); }
+  40% { transform: translate(4px, 3px) rotate(1deg); }
+  50% { transform: translate(-3px, -3px) rotate(-0.8deg); }
+  60% { transform: translate(3px, 2px) rotate(0.8deg); }
+  70% { transform: translate(-2px, -4px) rotate(-0.6deg); }
+  80% { transform: translate(2px, 3px) rotate(0.6deg); }
+  90% { transform: translate(-1px, -2px) rotate(-0.3deg); }
+}
+
+body.shake {
+  animation: screenShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes intensiveShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  2% { transform: translate(-8px, 7px) rotate(-2deg); }
+  4% { transform: translate(7px, -8px) rotate(2deg); }
+  6% { transform: translate(-9px, 6px) rotate(-2.5deg); }
+  8% { transform: translate(8px, 9px) rotate(2.5deg); }
+  10% { transform: translate(-7px, -8px) rotate(-2deg); }
+  12% { transform: translate(9px, 7px) rotate(2deg); }
+  14% { transform: translate(-8px, -9px) rotate(-2.5deg); }
+  16% { transform: translate(7px, 8px) rotate(2.5deg); }
+  18% { transform: translate(-9px, -7px) rotate(-2deg); }
+  20% { transform: translate(8px, 9px) rotate(2deg); }
+  22% { transform: translate(-7px, 6px) rotate(-2deg); }
+  24% { transform: translate(9px, -8px) rotate(2deg); }
+  26% { transform: translate(-6px, 7px) rotate(-1.8deg); }
+  28% { transform: translate(7px, -6px) rotate(1.8deg); }
+  30% { transform: translate(-8px, 8px) rotate(-2deg); }
+  32% { transform: translate(6px, -7px) rotate(2deg); }
+  34% { transform: translate(-7px, 6px) rotate(-1.5deg); }
+  36% { transform: translate(8px, 7px) rotate(1.5deg); }
+  38% { transform: translate(-6px, -8px) rotate(-1.5deg); }
+  40% { transform: translate(7px, 6px) rotate(1.5deg); }
+  45% { transform: translate(-5px, 5px) rotate(-1.2deg); }
+  50% { transform: translate(5px, -5px) rotate(1.2deg); }
+  55% { transform: translate(-4px, 4px) rotate(-1deg); }
+  60% { transform: translate(4px, -4px) rotate(1deg); }
+  65% { transform: translate(-3px, 3px) rotate(-0.8deg); }
+  70% { transform: translate(3px, -3px) rotate(0.8deg); }
+  75% { transform: translate(-2px, 2px) rotate(-0.5deg); }
+  80% { transform: translate(2px, -2px) rotate(0.5deg); }
+  85% { transform: translate(-1px, 1px) rotate(-0.3deg); }
+  90% { transform: translate(1px, -1px) rotate(0.3deg); }
+  95% { transform: translate(-1px, 0px) rotate(-0.2deg); }
+}
+
+body.intensive-shake {
+  animation: intensiveShake 1.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes horrorPulse {
+  0%, 100% { 
+    box-shadow: 0 0 30px rgba(253, 167, 66, 0.4), 0 0 50px rgba(2, 117, 120, 0.3);
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    box-shadow: 0 0 50px rgba(253, 167, 66, 0.7), 0 0 80px rgba(2, 117, 120, 0.6), 0 0 100px rgba(253, 167, 66, 0.3);
+    transform: scale(1.01);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes glitchEffect {
+  0% { 
+    transform: translate(0) skew(0deg);
+    opacity: 1;
+    filter: hue-rotate(0deg);
+  }
+  10% { 
+    transform: translate(-5px, 2px) skew(-2deg);
+    opacity: 0.7;
+    filter: hue-rotate(90deg);
+  }
+  20% { 
+    transform: translate(3px, -4px) skew(2deg);
+    opacity: 0.9;
+    filter: hue-rotate(180deg);
+  }
+  30% { 
+    transform: translate(-2px, -3px) skew(-1deg);
+    opacity: 0.6;
+    filter: hue-rotate(270deg);
+  }
+  40% { 
+    transform: translate(4px, 2px) skew(3deg);
+    opacity: 0.95;
+    filter: hue-rotate(360deg);
+  }
+  50% { 
+    transform: translate(0px, 0px) skew(0deg);
+    opacity: 1;
+    filter: hue-rotate(0deg);
+  }
+  60% { 
+    transform: translate(-3px, 3px) skew(-2deg);
+    opacity: 0.8;
+    filter: hue-rotate(90deg);
+  }
+  70% { 
+    transform: translate(2px, -2px) skew(1deg);
+    opacity: 0.9;
+    filter: hue-rotate(180deg);
+  }
+  80% { 
+    transform: translate(-1px, 1px) skew(-1deg);
+    opacity: 0.85;
+    filter: hue-rotate(270deg);
+  }
+  90% { 
+    transform: translate(1px, -1px) skew(1deg);
+    opacity: 0.95;
+    filter: hue-rotate(360deg);
+  }
+  100% { 
+    transform: translate(0) skew(0deg);
+    opacity: 1;
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes redFlash {
+  0%, 100% { 
+    background: #050505;
+  }
+  50% { 
+    background: rgba(139, 0, 0, 0.3);
+  }
+}
+
+section.horror-pulse {
+  animation: horrorPulse 2s ease-in-out infinite;
+}
+
+.brand.glitch {
+  animation: glitchEffect 0.5s ease-in-out;
+}
+
+body.red-flash {
+  animation: redFlash 0.3s ease-in-out;
+}
+
+.interactive-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#horror-canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.fog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 80%, var(--glow-orange) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 20%, var(--glow-teal) 0%, transparent 70%);
+  animation: fogDrift 25s ease-in-out infinite alternate;
+  opacity: 0.3;
+}
+
+.shadow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, var(--shadow-deep) 50%, transparent 100%);
+  opacity: 0.5;
+  animation: shadowShift 20s ease-in-out infinite;
+}
+
+@keyframes fogDrift {
+  0% { transform: translateX(-30px) scale(0.98); }
+  100% { transform: translateX(30px) scale(1.02); }
+}
+
+@keyframes shadowShift {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.7; }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  backdrop-filter: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.brand {
+  font-family: 'Creepster', cursive;
+  font-size: 2rem;
+  color: var(--primary-orange);
+  text-shadow: 0 0 20px var(--glow-orange);
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.brand:hover {
+  text-shadow: 0 0 30px var(--glow-orange), 0 0 50px var(--glow-orange);
+  transform: scale(1.05);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--primary-orange);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px var(--glow-orange);
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-teal), var(--primary-orange));
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav a:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--glow-orange);
+}
+
+.nav a:hover::before {
+  width: 100%;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 0;
+}
+
+section {
+  max-width: 800px;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 2.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.hero-section {
+  margin-top: 140px !important;
+  margin-bottom: auto;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--glass-hover), transparent);
+  transition: left 0.8s ease;
+}
+
+section:hover::before {
+  left: 100%;
+}
+
+section:hover {
+  transform: translateY(-5px);
+  background: var(--glass-hover);
+  border: 2px solid;
+  border-image: linear-gradient(45deg, var(--primary-orange), var(--primary-teal), var(--primary-orange)) 1;
+  box-shadow: 0 15px 30px var(--shadow-deep), 0 0 20px var(--glow-orange), 0 0 30px var(--glow-teal);
+}
+
+h1 {
+  font-family: 'Creepster', cursive;
+  font-size: 3rem;
+  color: var(--primary-orange);
+  text-shadow: 0 0 25px var(--glow-orange);
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: titlePulse 4s ease-in-out infinite alternate;
+  letter-spacing: 3px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--primary-teal);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 12px var(--glow-teal);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1.3rem;
+  color: var(--primary-orange);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+@keyframes titlePulse {
+  0% { text-shadow: 0 0 30px var(--glow-orange); transform: scale(1); }
+  100% { text-shadow: 0 0 40px var(--glow-orange), 0 0 60px var(--glow-orange); transform: scale(1.02); }
+}
+
+.hero-section {
+  text-align: center;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: var(--primary-teal);
+  text-shadow: 0 0 12px var(--glow-teal);
+  margin-bottom: 2rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.story {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.emphasis {
+  color: var(--primary-orange);
+  font-weight: 600;
+  text-shadow: 0 0 10px var(--glow-orange);
+  font-style: italic;
+}
+
+.highlight {
+  color: var(--primary-teal);
+  font-weight: 600;
+  text-shadow: 0 0 10px var(--glow-teal);
+}
+
+.section-intro {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 2px solid;
+}
+
+.btn-primary {
+  background: var(--primary-orange);
+  color: #0a0a0a;
+  border-color: var(--primary-orange);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primary-orange);
+  box-shadow: 0 0 20px var(--glow-orange);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-teal);
+  border-color: var(--primary-teal);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-teal);
+  color: #0a0a0a;
+  box-shadow: 0 0 20px var(--glow-teal);
+  transform: translateY(-2px);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.game-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--primary-orange);
+  box-shadow: 0 20px 40px var(--shadow-deep);
+  background: var(--glass-hover);
+}
+
+.game-card.featured {
+  border-color: var(--primary-teal);
+  background: var(--teal-glass);
+}
+
+.game-card.featured:hover {
+  box-shadow: 0 15px 30px var(--shadow-deep), 0 0 20px var(--glow-teal);
+}
+
+.game-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.game-link {
+  color: var(--primary-orange);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.game-link:hover {
+  text-shadow: 0 0 10px var(--glow-orange);
+}
+
+.status {
+  display: inline-block;
+  background: var(--primary-teal);
+  color: #0a0a0a;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.game-description {
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+}
+
+.demon-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.demon-list li {
+  padding: 0.5rem 0;
+  color: var(--primary-orange);
+  font-weight: 500;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.demon-list li::before {
+  content: '⚡';
+  position: absolute;
+  left: 0;
+  color: var(--primary-teal);
+}
+
+.support-quote {
+  font-style: italic;
+  color: var(--primary-teal);
+  text-shadow: 0 0 8px var(--glow-teal);
+  font-size: 1rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.tier {
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tier:hover {
+  transform: translateX(15px) scale(1.02);
+  border-color: var(--primary-orange);
+  background: var(--glass-hover);
+  box-shadow: 0 10px 25px var(--shadow-deep);
+}
+
+.tier ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.tier li {
+  padding: 0.4rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.tier li::before {
+  content: '•';
+  color: var(--primary-orange);
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.social-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.social-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  border-color: var(--primary-orange);
+  background: var(--glass-hover);
+  box-shadow: 0 15px 30px var(--shadow-deep);
+}
+
+.social-card.featured {
+  border-color: var(--primary-teal);
+  background: var(--teal-glass);
+}
+
+.social-icon {
+  margin-bottom: 0.8rem;
+  transition: all 0.4s ease;
+}
+
+.social-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--text-secondary);
+  transition: all 0.4s ease;
+}
+
+.social-card:hover .social-icon svg {
+  fill: var(--primary-orange);
+  filter: drop-shadow(0 0 15px rgba(253, 167, 66, 0.8));
+  transform: scale(1.3) rotateY(180deg);
+}
+
+.social-card.featured .social-icon svg {
+  fill: var(--primary-teal);
+}
+
+.social-card.featured:hover .social-icon svg {
+  fill: var(--primary-teal);
+  filter: drop-shadow(0 0 20px rgba(2, 117, 120, 0.9));
+}
+
+.social-card a {
+  color: var(--primary-orange);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+  @media (max-width: 768px) {
+  .container { 
+    padding: 0 1rem;
+    min-height: 100vh;
+    padding-top: 0;
+  }
+  
+  .hero-section {
+    margin-top: 120px !important;
+    margin-bottom: auto;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.4s ease;
+    border-left: 2px solid var(--primary-orange);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
+  }
+  
+  .nav-menu.active {
+    right: 0;
+  }
+  
+  .nav-menu a {
+    font-size: 1.3rem;
+    padding: 1rem;
+    width: 80%;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-menu a:hover {
+    background: var(--glass-hover);
+    border-color: var(--primary-orange);
+    transform: translateX(-10px);
+  }
+  
+  section { 
+    padding: 1.5rem 1rem;
+    margin: 1rem auto;
+  }
+  
+  h1 { 
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+  }
+  
+  .brand { 
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .hero-section {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .story {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+  }
+  
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .game-card {
+    padding: 1.25rem;
+  }
+  
+  .game-icon {
+    font-size: 2rem;
+  }
+  
+  .tier-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .tier {
+    padding: 1rem;
+  }
+  
+  .tier:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+  
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .social-card {
+    padding: 1rem 0.75rem;
+  }
+  
+  .social-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .section-intro {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .demon-list li {
+    font-size: 0.95rem;
+  }
+  
+  .support-quote {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    width: 85%;
+  }
+  
+  .nav-menu a {
+    font-size: 1.1rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  .brand {
+    font-size: 1.3rem;
+  }
+  
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .game-grid {
+    gap: 1.25rem;
+  }
+  
+  section {
+    padding: 1.25rem 0.75rem;
+  }
+  
+  .story {
+    font-size: 0.9rem;
+  }
+}
+ 
+
+
+
+// Horror Background Canvas
+class HorrorBackground {
+  constructor() {
+    this.canvas = document.getElementById('horror-canvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.ghosts = [];
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.time = 0;
+    this.init();
+  }
+  
+  init() {
+    this.resize();
+    this.createParticles();
+    this.createGhosts();
+    this.animate();
+    
+    window.addEventListener('resize', () => this.resize());
+    document.addEventListener('mousemove', (e) => this.updateMouse(e));
+    document.addEventListener('click', (e) => this.createClickEffect(e));
+  }
+  
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+  
+  updateMouse(e) {
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
+  }
+  
+  createParticles() {
+    for (let i = 0; i < 100; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 3 + 0.5,
+        speedX: (Math.random() - 0.5) * 1.5,
+        speedY: (Math.random() - 0.5) * 1.5,
+        color: Math.random() > 0.5 ? '#fda742' : '#027578',
+        opacity: Math.random() * 0.6 + 0.2
+      });
+    }
+  }
+  
+  createGhosts() {
+    for (let i = 0; i < 3; i++) {
+      this.ghosts.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 40 + 20,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: 0.1,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+  
+  createClickEffect(e) {
+    for (let i = 0; i < 20; i++) {
+      this.particles.push({
+        x: e.clientX,
+        y: e.clientY,
+        size: Math.random() * 5 + 1,
+        speedX: (Math.random() - 0.5) * 10,
+        speedY: (Math.random() - 0.5) * 10,
+        color: Math.random() > 0.5 ? '#fda742' : '#027578',
+        opacity: 1,
+        life: 60
+      });
+    }
+  }
+  
+  drawParticle(p) {
+    const pulse = Math.sin(this.time * 0.05) * 0.3 + 0.7;
+    const dist = Math.sqrt(Math.pow(this.mouseX - p.x, 2) + Math.pow(this.mouseY - p.y, 2));
+    const effect = Math.max(0, 100 - dist) / 100;
+    const size = p.size * (1 + effect * 0.5) * pulse;
+    
+    const grad = this.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, size * 3);
+    grad.addColorStop(0, p.color + Math.floor(p.opacity * 255).toString(16).padStart(2, '0'));
+    grad.addColorStop(1, 'transparent');
+    
+    this.ctx.fillStyle = grad;
+    this.ctx.beginPath();
+    this.ctx.arc(p.x, p.y, size * 3, 0, Math.PI * 2);
+    this.ctx.fill();
+    
+    this.ctx.fillStyle = p.color + Math.floor(p.opacity * 255).toString(16).padStart(2, '0');
+    this.ctx.beginPath();
+    this.ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+    this.ctx.fill();
+  }
+  
+  drawGhost(g) {
+    g.phase += 0.02;
+    const opacity = (Math.sin(g.phase) * 0.05 + 0.1) * g.opacity;
+    this.ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+    this.ctx.beginPath();
+    this.ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
+    this.ctx.fill();
+  }
+  
+  updateParticles() {
+    this.particles = this.particles.filter(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      
+      if (p.life !== undefined) {
+        p.life--;
+        p.opacity *= 0.98;
+        return p.life > 0;
+      }
+      
+      const dist = Math.sqrt(Math.pow(this.mouseX - p.x, 2) + Math.pow(this.mouseY - p.y, 2));
+      if (dist < 150) {
+        const angle = Math.atan2(p.y - this.mouseY, p.x - this.mouseX);
+        const force = (150 - dist) / 150 * 3;
+        p.x += Math.cos(angle) * force;
+        p.y += Math.sin(angle) * force;
+      }
+      
+      if (p.x < 0) p.x = this.canvas.width;
+      if (p.x > this.canvas.width) p.x = 0;
+      if (p.y < 0) p.y = this.canvas.height;
+      if (p.y > this.canvas.height) p.y = 0;
+      
+      return true;
+    });
+  }
+  
+  updateGhosts() {
+    this.ghosts.forEach(g => {
+      g.x += g.speedX;
+      g.y += g.speedY;
+      
+      if (g.x < 0 || g.x > this.canvas.width) g.speedX *= -1;
+      if (g.y < 0 || g.y > this.canvas.height) g.speedY *= -1;
+    });
+  }
+  
+  animate() {
+    this.time++;
+    this.ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    this.updateParticles();
+    this.updateGhosts();
+    this.particles.forEach(p => this.drawParticle(p));
+    this.ghosts.forEach(g => this.drawGhost(g));
+    
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+  mobileMenuToggle.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+    mobileMenuToggle.classList.remove('active');
+    navMenu.classList.remove('active');
+  }
+});
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+// Interactive effects
+function addInteractiveEffects() {
+  const cards = document.querySelectorAll('.game-card, .tier, .social-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.borderColor = Math.random() > 0.5 ? '#fda742' : '#027578';
+    });
+  });
+}
+
+// Initialize
+window.addEventListener('load', () => {
+  new HorrorBackground();
+  document.querySelectorAll('section').forEach(el => observer.observe(el));
+  addInteractiveEffects();
+  
+  const firstSection = document.querySelector('.hero-section');
+  if (firstSection) {
+    firstSection.style.opacity = '1';
+    firstSection.style.transform = 'translateY(0)';
+  }
+});
