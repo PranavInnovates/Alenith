@@ -1,1 +1,43 @@
-<h1>REMAINING</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contact.css">
+
+    <title>Contact Us</title>
+</head>
+<body>
+
+    <div class="container" id="container">
+        <form>
+          <h1>Contact Us</h1>
+           <input type="hidden" name="access_key" value="c75aa5db-286b-4216-a5a0-1521a8c27219">
+          <input type="text" placeholder="Select" id="select_input" name="select" list="select" required>
+          <datalist id="select">
+            <option value="Suggestion"></option>
+            <option value="Support"></option>
+            <option value="Complain"></option>
+          </datalist>
+      
+          <input type="text" placeholder="Name" id="name" name="name" required>
+      
+          <input type="email" placeholder="Your Email" id="email" name="email" required>
+      
+          <input type="text" placeholder="Phone Number" id="phone" name="phone" required maxlength="10" minlength="10" pattern="[0-9]{10}">
+      
+         <textarea name="message" placeholder="Enter your Message" id="message_input" maxlength="1000" required></textarea>
+      
+          <label for="agree">
+            <input type="checkbox" name="agree" id="agree" required>
+            I agree to receive communications from Alenith.
+          </label>
+      
+          <button type="submit">Submit</button>
+        </form>
+        </div>
+        
+              <button onclick="window.location.href='index.html';" class="hidden" id="register">Go Back</button>
+            </div>
+</body>
+</html>
