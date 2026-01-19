@@ -186,7 +186,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================
-// CARD HOVER EFFECTS
+// CARD HOVER EFFECTS WITH PARTICLES
 // ============================================
 
 const cards = document.querySelectorAll('.game-card, .tier, .social-card');
@@ -196,12 +196,68 @@ cards.forEach(card => {
   card.addEventListener('mouseenter', function() {
     const randomColor = glowColors[Math.floor(Math.random() * glowColors.length)];
     this.style.boxShadow = `0 12px 48px ${randomColor}80, inset 0 0 30px ${randomColor}40`;
+    
+    // Create particle burst on hover
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        createHoverParticle(this, randomColor);
+      }, i * 50);
+    }
   });
   
   card.addEventListener('mouseleave', function() {
     this.style.boxShadow = '';
   });
 });
+
+function createHoverParticle(element, color) {
+  const rect = element.getBoundingClientRect();
+  const particle = document.createElement('div');
+  
+  const startX = rect.left + rect.width / 2;
+  const startY = rect.top + rect.height / 2;
+  
+  particle.style.position = 'fixed';
+  particle.style.left = startX + 'px';
+  particle.style.top = startY + 'px';
+  particle.style.width = '4px';
+  particle.style.height = '4px';
+  particle.style.background = color;
+  particle.style.borderRadius = '50%';
+  particle.style.pointerEvents = 'none';
+  particle.style.zIndex = '9998';
+  particle.style.boxShadow = `0 0 10px ${color}`;
+  
+  const angle = Math.random() * Math.PI * 2;
+  const distance = 100 + Math.random() * 100;
+  const endX = startX + Math.cos(angle) * distance;
+  const endY = startY + Math.sin(angle) * distance;
+  
+  particle.style.animation = `burstParticle 1s ease-out forwards`;
+  
+  const keyframes = `
+    @keyframes burstParticle {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(${endX - startX}px, ${endY - startY}px) scale(0);
+        opacity: 0;
+      }
+    }
+  `;
+  
+  const style = document.createElement('style');
+  style.textContent = keyframes;
+  document.head.appendChild(style);
+  
+  document.body.appendChild(particle);
+  setTimeout(() => {
+    particle.remove();
+    style.remove();
+  }, 1000);
+}
 
 // ============================================
 // 3D TILT EFFECT ON CARDS
@@ -266,7 +322,7 @@ fadeInStyle.textContent = `
 document.head.appendChild(fadeInStyle);
 
 // ============================================
-// LIST ITEMS ANIMATION
+// LIST ITEMS ANIMATION WITH REVEAL
 // ============================================
 
 const listItems = document.querySelectorAll('.demon-list li, .tier li');
@@ -274,9 +330,10 @@ const listObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, index) => {
     if (entry.isIntersecting) {
       setTimeout(() => {
+        entry.target.classList.add('revealed');
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateX(0)';
-      }, index * 80);
+      }, index * 150);
       listObserver.unobserve(entry.target);
     }
   });
@@ -284,8 +341,8 @@ const listObserver = new IntersectionObserver((entries) => {
 
 listItems.forEach(item => {
   item.style.opacity = '0';
-  item.style.transform = 'translateX(-30px)';
-  item.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+  item.style.transform = 'translateX(-50px)';
+  item.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
   listObserver.observe(item);
 });
 
@@ -500,3 +557,72 @@ gameIcons.forEach((icon, index) => {
 });
 
 console.log('%c⚠️ The witch awakens with every click... ⚠️', 'color: #fda742; font-size: 16px; font-weight: bold; background: #0a0a0a; padding: 10px;');
+
+// ============================================
+// INTERACTIVE TEXT EFFECTS
+// ============================================
+
+// Add hover effect to all paragraphs
+document.querySelectorAll('section p').forEach(p => {
+  p.addEventListener('mouseenter', function() {
+    this.style.transition = 'all 0.3s ease';
+    this.style.textShadow = '0 0 15px rgba(2, 117, 120, 0.5)';
+    this.style.transform = 'translateX(5px)';
+  });
+  
+  p.addEventListener('mouseleave', function() {
+    this.style.textShadow = 'none';
+    this.style.transform = 'translateX(0)';
+  });
+});
+
+// Add glow effect on text selection
+document.addEventListener('selectionchange', () => {
+  const selection = window.getSelection();
+  if (selection.toString().length > 0) {
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    
+    const glow = document.createElement('div');
+    glow.style.position = 'fixed';
+    glow.style.left = rect.left + 'px';
+    glow.style.top = rect.top + 'px';
+    glow.style.width = rect.width + 'px';
+    glow.style.height = rect.height + 'px';
+    glow.style.background = 'radial-gradient(circle, rgba(253, 167, 66, 0.2), transparent)';
+    glow.style.pointerEvents = 'none';
+    glow.style.zIndex = '9997';
+    glow.style.animation = 'selectionGlow 0.5s ease-out';
+    
+    document.body.appendChild(glow);
+    setTimeout(() => glow.remove(), 500);
+  }
+});
+
+const selectionGlowStyle = document.createElement('style');
+selectionGlowStyle.textContent = `
+  @keyframes selectionGlow {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+  }
+`;
+document.head.appendChild(selectionGlowStyle);
+
+// Interactive title letters
+document.querySelectorAll('.mega-title, .section-title').forEach(title => {
+  title.addEventListener('mouseenter', function() {
+    this.style.animation = 'none';
+    setTimeout(() => {
+      this.style.animation = '';
+    }, 10);
+  });
+});
