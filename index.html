@@ -11,10 +11,8 @@
 </head>
 <body>
 
-<!-- ══ HORROR BACKGROUND ══ -->
+<!-- ══ HORROR BACKGROUND (fixed, always visible) ══ -->
 <div class="horror-bg" aria-hidden="true">
-
-  <!-- Cracked stone wall texture -->
   <svg class="bg-cracks" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
@@ -27,136 +25,56 @@
       </filter>
     </defs>
     <rect width="100%" height="100%" fill="url(#vignette)"/>
-    <!-- Main cracks -->
     <g filter="url(#roughen)" stroke="#2a0808" stroke-width="1.2" fill="none" opacity="0.85">
-      <path d="M180,0 L195,70 L165,155 L210,270 L185,390 L215,480"/>
-      <path d="M195,70 L255,108 L295,92 L330,110"/>
-      <path d="M165,155 L128,188 L145,248 L120,300"/>
-      <path d="M750,0 L730,110 L775,195 L745,330 L780,460 L750,580"/>
-      <path d="M730,110 L672,138 L650,122 L620,140"/>
-      <path d="M775,195 L825,218 L848,205 L880,225"/>
-      <path d="M1260,0 L1242,88 L1275,175 L1245,295 L1270,410"/>
-      <path d="M1242,88 L1200,108 L1180,95 L1155,112"/>
-      <path d="M480,900 L500,810 L468,725 L508,645 L475,565"/>
-      <path d="M90,900 L108,828 L80,758 L110,698"/>
-      <path d="M1060,900 L1042,822 L1078,748 L1052,672 L1080,610"/>
-      <path d="M1440,350 L1408,390 L1435,438 L1412,490 L1440,540"/>
-      <path d="M0,500 L32,535 L10,575 L38,615"/>
+      <path d="M180,0 L195,70 L165,155 L210,270 L185,390"/><path d="M195,70 L255,108 L295,92"/>
+      <path d="M750,0 L730,110 L775,195 L745,330 L780,460"/><path d="M730,110 L672,138 L650,122"/>
+      <path d="M1260,0 L1242,88 L1275,175 L1245,295"/><path d="M1242,88 L1200,108 L1180,95"/>
+      <path d="M480,900 L500,810 L468,725 L508,645"/><path d="M1060,900 L1042,822 L1078,748"/>
+      <path d="M1440,350 L1408,390 L1435,438"/><path d="M0,500 L32,535 L10,575"/>
     </g>
-    <!-- Hairline sub-cracks -->
     <g stroke="#1a0505" stroke-width="0.5" fill="none" opacity="0.55">
-      <path d="M380,0 L392,55 L370,120 L398,188 L375,270"/>
-      <path d="M392,55 L428,72 L448,64"/>
-      <path d="M960,0 L948,65 L975,130 L955,210"/>
-      <path d="M575,900 L588,835 L565,768 L592,712"/>
-      <path d="M1360,220 L1342,265 L1368,312 L1350,355"/>
-      <path d="M30,300 L52,335 L28,368 L50,400"/>
+      <path d="M380,0 L392,55 L370,120 L398,188"/><path d="M392,55 L428,72 L448,64"/>
+      <path d="M960,0 L948,65 L975,130"/><path d="M575,900 L588,835 L565,768"/>
     </g>
   </svg>
-
-  <!-- Blood drips along top -->
   <svg class="bg-drips" viewBox="0 0 1440 100" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
     <g fill="#6b0000" opacity="0.9">
       <path d="M48,0 L48,42 Q48,56 42,56 Q36,56 36,42 L36,0Z"/><ellipse cx="42" cy="58" rx="6" ry="8"/>
-      <path d="M145,0 L145,28 Q145,40 140,40 Q135,40 135,28 L135,0Z"/><ellipse cx="140" cy="42" rx="5" ry="7"/>
       <path d="M270,0 L270,62 Q270,76 263,76 Q256,76 256,62 L256,0Z"/><ellipse cx="263" cy="78" rx="7" ry="9"/>
-      <path d="M410,0 L410,33 Q410,45 404,45 Q398,45 398,33 L398,0Z"/><ellipse cx="404" cy="47" rx="6" ry="8"/>
       <path d="M560,0 L560,52 Q560,65 554,65 Q548,65 548,52 L548,0Z"/><ellipse cx="554" cy="67" rx="6" ry="8"/>
-      <path d="M680,0 L680,22 Q680,32 675,32 Q670,32 670,22 L670,0Z"/><ellipse cx="675" cy="34" rx="5" ry="6"/>
       <path d="M820,0 L820,68 Q820,82 813,82 Q806,82 806,68 L806,0Z"/><ellipse cx="813" cy="84" rx="7" ry="10"/>
-      <path d="M950,0 L950,38 Q950,50 944,50 Q938,50 938,38 L938,0Z"/><ellipse cx="944" cy="52" rx="6" ry="8"/>
       <path d="M1080,0 L1080,48 Q1080,61 1074,61 Q1068,61 1068,48 L1068,0Z"/><ellipse cx="1074" cy="63" rx="6" ry="8"/>
-      <path d="M1220,0 L1220,28 Q1220,40 1214,40 Q1208,40 1208,28 L1208,0Z"/><ellipse cx="1214" cy="42" rx="5" ry="7"/>
       <path d="M1370,0 L1370,56 Q1370,70 1363,70 Q1356,70 1356,56 L1356,0Z"/><ellipse cx="1363" cy="72" rx="7" ry="9"/>
     </g>
-    <!-- Dried blood puddles under drips -->
-    <g fill="#450000" opacity="0.6">
-      <ellipse cx="42" cy="68" rx="12" ry="4"/>
-      <ellipse cx="263" cy="89" rx="14" ry="4"/>
-      <ellipse cx="554" cy="77" rx="12" ry="3"/>
-      <ellipse cx="813" cy="96" rx="15" ry="4"/>
-      <ellipse cx="1074" cy="73" rx="12" ry="3"/>
-      <ellipse cx="1363" cy="83" rx="13" ry="4"/>
-    </g>
   </svg>
-
-  <!-- Spider webs in corners -->
   <svg class="bg-webs" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#cccccc" fill="none" opacity="0.14">
-      <!-- Top-left web -->
-      <g stroke-width="0.5">
-        <line x1="0" y1="0" x2="220" y2="0"/>
-        <line x1="0" y1="0" x2="0" y2="220"/>
-        <line x1="0" y1="0" x2="220" y2="220"/>
-        <line x1="0" y1="0" x2="100" y2="220"/>
-        <line x1="0" y1="0" x2="220" y2="100"/>
-        <line x1="0" y1="0" x2="50" y2="220"/>
-        <line x1="0" y1="0" x2="220" y2="50"/>
-        <line x1="0" y1="0" x2="155" y2="220"/>
-        <line x1="0" y1="0" x2="220" y2="155"/>
-        <path d="M45,0 Q22,22 0,45"/>
-        <path d="M90,0 Q45,45 0,90"/>
-        <path d="M135,0 Q67,67 0,135"/>
-        <path d="M180,0 Q90,90 0,180"/>
-        <path d="M220,0 Q110,110 0,220"/>
-      </g>
-      <!-- Spider body top-left -->
-      <circle cx="95" cy="55" r="5" fill="#111" stroke="#666" stroke-width="0.6"/>
-      <circle cx="95" cy="49" r="3" fill="#111" stroke="#666" stroke-width="0.5"/>
-      <g stroke="#888" stroke-width="0.5">
-        <line x1="92" y1="51" x2="83" y2="43"/><line x1="90" y1="53" x2="79" y2="50"/>
-        <line x1="90" y1="56" x2="79" y2="56"/><line x1="92" y1="59" x2="83" y2="66"/>
-        <line x1="98" y1="51" x2="107" y2="43"/><line x1="100" y1="53" x2="111" y2="50"/>
-        <line x1="100" y1="56" x2="111" y2="56"/><line x1="98" y1="59" x2="107" y2="66"/>
-      </g>
+    <g stroke="#cccccc" fill="none" opacity="0.13" stroke-width="0.5">
+      <line x1="0" y1="0" x2="200" y2="0"/><line x1="0" y1="0" x2="0" y2="200"/>
+      <line x1="0" y1="0" x2="200" y2="200"/><line x1="0" y1="0" x2="90" y2="200"/>
+      <line x1="0" y1="0" x2="200" y2="90"/>
+      <path d="M40,0 Q20,20 0,40"/><path d="M90,0 Q45,45 0,90"/>
+      <path d="M140,0 Q70,70 0,140"/><path d="M190,0 Q95,95 0,190"/>
+      <circle cx="85" cy="48" r="4.5" fill="#111" stroke="#555" stroke-width="0.6"/>
+      <line x1="82" y1="44" x2="75" y2="38"/><line x1="80" y1="46" x2="71" y2="44"/>
+      <line x1="80" y1="49" x2="71" y2="49"/><line x1="82" y1="52" x2="75" y2="57"/>
+      <line x1="88" y1="44" x2="95" y2="38"/><line x1="90" y1="46" x2="99" y2="44"/>
+      <line x1="90" y1="49" x2="99" y2="49"/><line x1="88" y1="52" x2="95" y2="57"/>
 
-      <!-- Top-right web -->
-      <g stroke-width="0.5">
-        <line x1="1440" y1="0" x2="1220" y2="0"/>
-        <line x1="1440" y1="0" x2="1440" y2="220"/>
-        <line x1="1440" y1="0" x2="1220" y2="220"/>
-        <line x1="1440" y1="0" x2="1340" y2="220"/>
-        <line x1="1440" y1="0" x2="1220" y2="100"/>
-        <line x1="1440" y1="0" x2="1285" y2="220"/>
-        <line x1="1440" y1="0" x2="1220" y2="50"/>
-        <line x1="1440" y1="0" x2="1220" y2="155"/>
-        <line x1="1440" y1="0" x2="1390" y2="220"/>
-        <path d="M1395,0 Q1418,22 1440,45"/>
-        <path d="M1350,0 Q1395,45 1440,90"/>
-        <path d="M1305,0 Q1373,67 1440,135"/>
-        <path d="M1260,0 Q1350,90 1440,180"/>
-        <path d="M1220,0 Q1330,110 1440,220"/>
-      </g>
-      <!-- Spider body top-right -->
-      <circle cx="1345" cy="55" r="5" fill="#111" stroke="#666" stroke-width="0.6"/>
-      <circle cx="1345" cy="49" r="3" fill="#111" stroke="#666" stroke-width="0.5"/>
-      <g stroke="#888" stroke-width="0.5">
-        <line x1="1342" y1="51" x2="1333" y2="43"/><line x1="1340" y1="53" x2="1329" y2="50"/>
-        <line x1="1340" y1="56" x2="1329" y2="56"/><line x1="1342" y1="59" x2="1333" y2="66"/>
-        <line x1="1348" y1="51" x2="1357" y2="43"/><line x1="1350" y1="53" x2="1361" y2="50"/>
-        <line x1="1350" y1="56" x2="1361" y2="56"/><line x1="1348" y1="59" x2="1357" y2="66"/>
-      </g>
-
-      <!-- Bottom-left mini web -->
-      <g stroke-width="0.4" opacity="0.7">
-        <line x1="0" y1="900" x2="130" y2="900"/>
-        <line x1="0" y1="900" x2="0" y2="770"/>
-        <line x1="0" y1="900" x2="130" y2="770"/>
-        <line x1="0" y1="900" x2="60" y2="770"/>
-        <line x1="0" y1="900" x2="130" y2="835"/>
-        <path d="M30,900 Q15,885 0,870"/>
-        <path d="M65,900 Q32,867 0,835"/>
-        <path d="M100,900 Q50,850 0,800"/>
-      </g>
+      <line x1="1440" y1="0" x2="1240" y2="0"/><line x1="1440" y1="0" x2="1440" y2="200"/>
+      <line x1="1440" y1="0" x2="1240" y2="200"/><line x1="1440" y1="0" x2="1350" y2="200"/>
+      <line x1="1440" y1="0" x2="1240" y2="90"/>
+      <path d="M1400,0 Q1420,20 1440,40"/><path d="M1350,0 Q1395,45 1440,90"/>
+      <path d="M1300,0 Q1370,70 1440,140"/><path d="M1250,0 Q1345,95 1440,190"/>
+      <circle cx="1355" cy="48" r="4.5" fill="#111" stroke="#555" stroke-width="0.6"/>
+      <line x1="1352" y1="44" x2="1345" y2="38"/><line x1="1350" y1="46" x2="1341" y2="44"/>
+      <line x1="1350" y1="49" x2="1341" y2="49"/><line x1="1352" y1="52" x2="1345" y2="57"/>
+      <line x1="1358" y1="44" x2="1365" y2="38"/><line x1="1360" y1="46" x2="1369" y2="44"/>
+      <line x1="1360" y1="49" x2="1369" y2="49"/><line x1="1358" y1="52" x2="1365" y2="57"/>
     </g>
   </svg>
-
-  <!-- Fog layers -->
   <div class="fog fog-1"></div>
   <div class="fog fog-2"></div>
   <div class="fog fog-3"></div>
-
-  <!-- Floating dust motes -->
   <div class="motes">
     <span class="mote"></span><span class="mote"></span><span class="mote"></span>
     <span class="mote"></span><span class="mote"></span><span class="mote"></span>
@@ -164,7 +82,6 @@
     <span class="mote"></span><span class="mote"></span><span class="mote"></span>
   </div>
 </div>
-<!-- ══ END HORROR BG ══ -->
 
 <!-- XP Bar -->
 <div class="xp-bar-container">
@@ -181,19 +98,18 @@
 <header class="nav" id="nav">
   <div class="nav-inner">
     <div class="brand">⬡ ALENITH</div>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
-      <span></span><span></span>
-    </button>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span></button>
     <nav class="nav-links" id="nav-links">
       <a href="#about">ABOUT</a>
       <a href="#games">GAMES</a>
+      <a href="#hg-chapter">H&amp;G</a>
       <a href="#support">SUPPORT</a>
       <a href="#community">COMMUNITY</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ══════════════ HERO ══════════════ -->
 <section id="about" class="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-content">
@@ -209,30 +125,16 @@
       <a href="#support" class="btn-outline">JOIN THE COVEN</a>
     </div>
   </div>
-
-  <div class="hero-scroll-hint">
-    <div class="scroll-line"></div>
-    <span>SCROLL</span>
-  </div>
-
+  <div class="hero-scroll-hint"><div class="scroll-line"></div><span>SCROLL</span></div>
   <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num" data-count="3">0</div>
-      <div class="stat-label">CREATORS</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num" data-count="2">0</div>
-      <div class="stat-label">GAMES SHIPPED</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num" data-count="1">0</div>
-      <div class="stat-label">IN DEVELOPMENT</div>
-    </div>
+    <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-label">CREATORS</div></div>
+    <div class="stat"><div class="stat-num" data-count="2">0</div><div class="stat-label">GAMES SHIPPED</div></div>
+    <div class="stat"><div class="stat-num" data-count="1">0</div><div class="stat-label">IN DEVELOPMENT</div></div>
   </div>
 </section>
 
 <!-- MANIFESTO TICKER -->
-<section class="manifesto" aria-hidden="true">
+<div class="manifesto" aria-hidden="true">
   <div class="manifesto-track">
     <div class="manifesto-inner">
       <span>NO CORPORATE BACKING</span><span class="dot">✦</span>
@@ -247,15 +149,14 @@
       <span>WE MAKE UP FOR IN SOUL</span><span class="dot">✦</span>
     </div>
   </div>
-</section>
+</div>
 
-<!-- GAMES -->
+<!-- ══════════════ GAMES ══════════════ -->
 <section id="games" class="games">
   <div class="section-header">
     <div class="section-tag">// OUR CREATIONS</div>
     <h2>DARK<br><span class="outline-text">CATALOG</span></h2>
   </div>
-
   <div class="game-showcase">
     <div class="game-item">
       <div class="game-num">01</div>
@@ -269,7 +170,6 @@
       </div>
       <div class="game-tag">RELEASED</div>
     </div>
-
     <div class="game-item">
       <div class="game-num">02</div>
       <div class="game-info">
@@ -282,25 +182,164 @@
       </div>
       <div class="game-tag">RELEASED</div>
     </div>
-
-    <div class="game-item game-featured">
+    <!-- Game 3 — links to the immersive scroll section below -->
+    <div class="game-item game-featured" id="hg-teaser">
       <div class="game-num">03</div>
       <div class="game-info">
-        <div class="game-icon-wrap">🌲</div>
+        <div class="game-icon-wrap hg-icon">🌲</div>
         <div>
           <h3>Hansel &amp; Gretel</h3>
           <p>Where breadcrumbs lead to madness.</p>
           <div class="featured-badge">● IN DEVELOPMENT</div>
         </div>
       </div>
-      <div class="game-reveal-text">
-        <p>"This isn't the story you remember—<br>this is the story that <em>remembers you.</em>"</p>
-      </div>
+      <a href="#hg-chapter" class="game-tag game-tag-cta xp-action" data-xp="15">ENTER THE FOREST →</a>
     </div>
   </div>
 </section>
 
-<!-- STORY SCROLL -->
+<!-- ══════════════ HANSEL & GRETEL — SCROLL STORY ══════════════ -->
+<section id="hg-chapter" class="hg-scroll">
+
+  <!-- Sticky stage that holds every scene -->
+  <div class="hg-stage">
+
+    <!-- Dark forest background canvas -->
+    <canvas id="forest-canvas"></canvas>
+
+    <!-- Progress crumbs trail (breadcrumbs = progress bar) -->
+    <div class="breadcrumb-trail" id="breadcrumb-trail" aria-hidden="true">
+      <div class="crumb" data-index="0"></div>
+      <div class="crumb" data-index="1"></div>
+      <div class="crumb" data-index="2"></div>
+      <div class="crumb" data-index="3"></div>
+      <div class="crumb" data-index="4"></div>
+    </div>
+
+    <!-- Scene 0 — Title card -->
+    <div class="hg-scene hg-scene--active" data-scene="0">
+      <div class="hg-scene-inner">
+        <div class="hg-eyebrow">ALENITH PRESENTS</div>
+        <h2 class="hg-title">HANSEL<br><span class="hg-amp">&amp;</span><br>GRETEL</h2>
+        <p class="hg-body">A fairy tale dipped in poison.</p>
+        <div class="hg-scroll-cue">↓ FOLLOW THE BREADCRUMBS</div>
+      </div>
+    </div>
+
+    <!-- Scene 1 — The forest -->
+    <div class="hg-scene" data-scene="1">
+      <div class="hg-scene-inner hg-scene-inner--split">
+        <div class="hg-text-block">
+          <div class="hg-eyebrow">CHAPTER I</div>
+          <h3 class="hg-chapter-title">INTO THE DARK</h3>
+          <p class="hg-body">The forest doesn't end.<br>It just gets <em>quieter.</em></p>
+        </div>
+        <div class="hg-visual">
+          <svg class="hg-trees" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#0a0308" opacity="0.95">
+              <polygon points="200,30 120,220 280,220"/>
+              <polygon points="200,100 100,320 300,320"/>
+              <polygon points="200,180 80,440 320,440"/>
+              <rect x="175" y="440" width="50" height="60"/>
+            </g>
+            <g fill="#060205" opacity="0.9">
+              <polygon points="80,80 30,230 130,230"/>
+              <polygon points="80,140 10,340 150,340"/>
+              <rect x="60" y="340" width="40" height="80"/>
+              <polygon points="320,60 260,220 380,220"/>
+              <polygon points="320,130 250,340 390,340"/>
+              <rect x="300" y="340" width="40" height="80"/>
+            </g>
+            <!-- Eyes in the trees -->
+            <g class="hg-eyes" opacity="0">
+              <ellipse cx="155" cy="160" rx="5" ry="7" fill="#ff2200" opacity="0.8"/>
+              <ellipse cx="250" cy="180" rx="5" ry="7" fill="#ff2200" opacity="0.8"/>
+              <ellipse cx="65"  cy="200" rx="4" ry="6" fill="#ff2200" opacity="0.6"/>
+              <ellipse cx="345" cy="190" rx="4" ry="6" fill="#ff2200" opacity="0.6"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 2 — The breadcrumbs -->
+    <div class="hg-scene" data-scene="2">
+      <div class="hg-scene-inner">
+        <div class="hg-eyebrow">CHAPTER II</div>
+        <h3 class="hg-chapter-title">THE TRAIL</h3>
+        <p class="hg-body">Leave breadcrumbs.<br>Something else will find them <em>first.</em></p>
+        <div class="hg-crumb-vis" aria-hidden="true">
+          <span class="trail-crumb tc-1">🍞</span>
+          <span class="trail-crumb tc-2">🍞</span>
+          <span class="trail-crumb tc-3">🍞</span>
+          <span class="trail-crumb tc-4">🍞</span>
+          <span class="trail-crumb tc-5 eaten">?</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 3 — The house -->
+    <div class="hg-scene" data-scene="3">
+      <div class="hg-scene-inner hg-scene-inner--split hg-scene-inner--reverse">
+        <div class="hg-text-block">
+          <div class="hg-eyebrow">CHAPTER III</div>
+          <h3 class="hg-chapter-title">THE HOUSE</h3>
+          <p class="hg-body">It smells of gingerbread.<br>It smells of <em>rot.</em></p>
+        </div>
+        <div class="hg-visual hg-house-wrap">
+          <svg class="hg-house" viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- House body -->
+            <rect x="40" y="140" width="220" height="180" fill="#1a0a0a"/>
+            <!-- Roof -->
+            <polygon points="150,20 20,145 280,145" fill="#0d0505"/>
+            <!-- Door -->
+            <rect x="120" y="220" width="60" height="100" fill="#2a0f05"/>
+            <rect x="140" y="240" width="8" height="8" rx="4" fill="#8b0000"/>
+            <!-- Windows with glow -->
+            <rect x="60"  y="170" width="55" height="45" rx="3" fill="#1a0a00"/>
+            <rect x="185" y="170" width="55" height="45" rx="3" fill="#1a0a00"/>
+            <!-- Candle light flicker in windows -->
+            <rect x="62"  y="172" width="51" height="41" rx="2" fill="#3d1500" class="hg-window-glow"/>
+            <rect x="187" y="172" width="51" height="41" rx="2" fill="#3d1500" class="hg-window-glow"/>
+            <!-- Bars on windows (cage) -->
+            <line x1="80"  y1="170" x2="80"  y2="215" stroke="#333" stroke-width="2"/>
+            <line x1="95"  y1="170" x2="95"  y2="215" stroke="#333" stroke-width="2"/>
+            <line x1="205" y1="170" x2="205" y2="215" stroke="#333" stroke-width="2"/>
+            <line x1="220" y1="170" x2="220" y2="215" stroke="#333" stroke-width="2"/>
+            <!-- Smoke -->
+            <g class="hg-smoke" fill="#1a1a1a" opacity="0.4">
+              <ellipse cx="150" cy="15" rx="8" ry="12"/>
+              <ellipse cx="145" cy="5"  rx="6" ry="9"/>
+            </g>
+          </svg>
+          <div class="hg-house-shadow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 4 — The revelation -->
+    <div class="hg-scene" data-scene="4">
+      <div class="hg-scene-inner hg-scene-inner--center">
+        <div class="hg-eyebrow">CHAPTER IV</div>
+        <h3 class="hg-chapter-title hg-chapter-title--blood">THE TRUTH</h3>
+        <p class="hg-body hg-body--large">
+          "This isn't the story<br>you remember—"
+        </p>
+        <p class="hg-body hg-reveal-line">
+          "This is the story that<br><em class="hg-em-blood">remembers you.</em>"
+        </p>
+        <div class="hg-cta-wrap">
+          <div class="hg-status">● IN DEVELOPMENT</div>
+          <p class="hg-notify-label">Wishlisted by the brave.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end .hg-stage -->
+</section>
+<!-- ══ END H&G ══ -->
+
+<!-- ══ STUDIO STORY SCROLL ══ -->
 <section class="story-scroll">
   <div class="story-sticky">
     <div class="story-progress-bar"><div id="story-progress"></div></div>
@@ -327,14 +366,13 @@
   </div>
 </section>
 
-<!-- SUPPORT -->
+<!-- ══════════════ SUPPORT ══════════════ -->
 <section id="support" class="support">
   <div class="section-header">
     <div class="section-tag">// FEED THE NIGHTMARE</div>
     <h2>JOIN<br><span class="outline-text">THE COVEN</span></h2>
     <p class="section-sub">Every dollar whispers: <em>"Keep creating."</em></p>
   </div>
-
   <div class="tier-grid">
     <div class="tier-card" data-xp-hover="5">
       <div class="tier-glyph">☽</div>
@@ -367,13 +405,12 @@
   </div>
 </section>
 
-<!-- COMMUNITY -->
+<!-- ══════════════ COMMUNITY ══════════════ -->
 <section id="community" class="community">
   <div class="section-header">
     <div class="section-tag">// THE GATHERING</div>
     <h2>OUR<br><span class="outline-text">DARK FAMILY</span></h2>
   </div>
-
   <div class="social-row">
     <a href="#" class="social-card xp-action" data-xp="5">
       <div class="social-top">
