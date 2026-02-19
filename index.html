@@ -6,455 +6,363 @@
   <title>ALENITH — Where Darkness Creates</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=Cinzel+Decorative:wght@900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- ══ HORROR BACKGROUND (fixed, always visible) ══ -->
-<div class="horror-bg" aria-hidden="true">
-  <svg class="bg-cracks" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
-        <stop offset="0%" stop-color="#0a0005" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#000000" stop-opacity="0.98"/>
-      </radialGradient>
-      <filter id="roughen">
-        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#vignette)"/>
-    <g filter="url(#roughen)" stroke="#2a0808" stroke-width="1.2" fill="none" opacity="0.85">
-      <path d="M180,0 L195,70 L165,155 L210,270 L185,390"/><path d="M195,70 L255,108 L295,92"/>
-      <path d="M750,0 L730,110 L775,195 L745,330 L780,460"/><path d="M730,110 L672,138 L650,122"/>
-      <path d="M1260,0 L1242,88 L1275,175 L1245,295"/><path d="M1242,88 L1200,108 L1180,95"/>
-      <path d="M480,900 L500,810 L468,725 L508,645"/><path d="M1060,900 L1042,822 L1078,748"/>
-      <path d="M1440,350 L1408,390 L1435,438"/><path d="M0,500 L32,535 L10,575"/>
-    </g>
-    <g stroke="#1a0505" stroke-width="0.5" fill="none" opacity="0.55">
-      <path d="M380,0 L392,55 L370,120 L398,188"/><path d="M392,55 L428,72 L448,64"/>
-      <path d="M960,0 L948,65 L975,130"/><path d="M575,900 L588,835 L565,768"/>
-    </g>
-  </svg>
-  <svg class="bg-drips" viewBox="0 0 1440 100" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#6b0000" opacity="0.9">
-      <path d="M48,0 L48,42 Q48,56 42,56 Q36,56 36,42 L36,0Z"/><ellipse cx="42" cy="58" rx="6" ry="8"/>
-      <path d="M270,0 L270,62 Q270,76 263,76 Q256,76 256,62 L256,0Z"/><ellipse cx="263" cy="78" rx="7" ry="9"/>
-      <path d="M560,0 L560,52 Q560,65 554,65 Q548,65 548,52 L548,0Z"/><ellipse cx="554" cy="67" rx="6" ry="8"/>
-      <path d="M820,0 L820,68 Q820,82 813,82 Q806,82 806,68 L806,0Z"/><ellipse cx="813" cy="84" rx="7" ry="10"/>
-      <path d="M1080,0 L1080,48 Q1080,61 1074,61 Q1068,61 1068,48 L1068,0Z"/><ellipse cx="1074" cy="63" rx="6" ry="8"/>
-      <path d="M1370,0 L1370,56 Q1370,70 1363,70 Q1356,70 1356,56 L1356,0Z"/><ellipse cx="1363" cy="72" rx="7" ry="9"/>
-    </g>
-  </svg>
-  <svg class="bg-webs" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#cccccc" fill="none" opacity="0.13" stroke-width="0.5">
-      <line x1="0" y1="0" x2="200" y2="0"/><line x1="0" y1="0" x2="0" y2="200"/>
-      <line x1="0" y1="0" x2="200" y2="200"/><line x1="0" y1="0" x2="90" y2="200"/>
-      <line x1="0" y1="0" x2="200" y2="90"/>
-      <path d="M40,0 Q20,20 0,40"/><path d="M90,0 Q45,45 0,90"/>
-      <path d="M140,0 Q70,70 0,140"/><path d="M190,0 Q95,95 0,190"/>
-      <circle cx="85" cy="48" r="4.5" fill="#111" stroke="#555" stroke-width="0.6"/>
-      <line x1="82" y1="44" x2="75" y2="38"/><line x1="80" y1="46" x2="71" y2="44"/>
-      <line x1="80" y1="49" x2="71" y2="49"/><line x1="82" y1="52" x2="75" y2="57"/>
-      <line x1="88" y1="44" x2="95" y2="38"/><line x1="90" y1="46" x2="99" y2="44"/>
-      <line x1="90" y1="49" x2="99" y2="49"/><line x1="88" y1="52" x2="95" y2="57"/>
-
-      <line x1="1440" y1="0" x2="1240" y2="0"/><line x1="1440" y1="0" x2="1440" y2="200"/>
-      <line x1="1440" y1="0" x2="1240" y2="200"/><line x1="1440" y1="0" x2="1350" y2="200"/>
-      <line x1="1440" y1="0" x2="1240" y2="90"/>
-      <path d="M1400,0 Q1420,20 1440,40"/><path d="M1350,0 Q1395,45 1440,90"/>
-      <path d="M1300,0 Q1370,70 1440,140"/><path d="M1250,0 Q1345,95 1440,190"/>
-      <circle cx="1355" cy="48" r="4.5" fill="#111" stroke="#555" stroke-width="0.6"/>
-      <line x1="1352" y1="44" x2="1345" y2="38"/><line x1="1350" y1="46" x2="1341" y2="44"/>
-      <line x1="1350" y1="49" x2="1341" y2="49"/><line x1="1352" y1="52" x2="1345" y2="57"/>
-      <line x1="1358" y1="44" x2="1365" y2="38"/><line x1="1360" y1="46" x2="1369" y2="44"/>
-      <line x1="1360" y1="49" x2="1369" y2="49"/><line x1="1358" y1="52" x2="1365" y2="57"/>
-    </g>
-  </svg>
-  <div class="fog fog-1"></div>
-  <div class="fog fog-2"></div>
-  <div class="fog fog-3"></div>
-  <div class="motes">
-    <span class="mote"></span><span class="mote"></span><span class="mote"></span>
-    <span class="mote"></span><span class="mote"></span><span class="mote"></span>
-    <span class="mote"></span><span class="mote"></span><span class="mote"></span>
-    <span class="mote"></span><span class="mote"></span><span class="mote"></span>
+  <!-- XP Bar -->
+  <div class="xp-bar">
+    <span class="xp-label">SOUL <span id="xp-count">0</span></span>
+    <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+    <span class="xp-label">LVL <span id="xp-level">1</span></span>
   </div>
-</div>
 
-<!-- XP Bar -->
-<div class="xp-bar-container">
-  <div class="xp-label">SOUL <span id="xp-count">0</span></div>
-  <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
-  <div class="xp-level">LVL <span id="xp-level">1</span></div>
-</div>
-
-<!-- Cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="cursor-trail"></div>
-
-<!-- Nav -->
-<header class="nav" id="nav">
-  <div class="nav-inner">
-    <div class="brand">⬡ ALENITH</div>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><span></span><span></span></button>
-    <nav class="nav-links" id="nav-links">
-      <a href="#about">ABOUT</a>
-      <a href="#games">GAMES</a>
-      <a href="#hg-chapter">H&amp;G</a>
-      <a href="#support">SUPPORT</a>
-      <a href="#community">COMMUNITY</a>
-    </nav>
-  </div>
-</header>
-
-<!-- ══════════════ HERO ══════════════ -->
-<section id="about" class="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-content">
-    <div class="hero-eyebrow">INDEPENDENT HORROR STUDIO</div>
-    <h1 class="hero-title">
-      <span class="title-line">WE</span>
-      <span class="title-line">CRAFT</span>
-      <span class="title-line accent">NIGHTMARES</span>
-    </h1>
-    <p class="hero-sub">Three dreamers. No sleep. Pure darkness.</p>
-    <div class="hero-cta">
-      <a href="#games" class="btn-primary">ENTER →</a>
-      <a href="#support" class="btn-outline">JOIN THE COVEN</a>
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#about" class="brand">⬡ ALENITH</a>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <nav class="nav-links" id="nav-links">
+        <a href="#about">ABOUT</a>
+        <a href="#games">GAMES</a>
+        <a href="#hg">H&G</a>
+        <a href="#support">SUPPORT</a>
+        <a href="#community">COMMUNITY</a>
+      </nav>
     </div>
-  </div>
-  <div class="hero-scroll-hint"><div class="scroll-line"></div><span>SCROLL</span></div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-label">CREATORS</div></div>
-    <div class="stat"><div class="stat-num" data-count="2">0</div><div class="stat-label">GAMES SHIPPED</div></div>
-    <div class="stat"><div class="stat-num" data-count="1">0</div><div class="stat-label">IN DEVELOPMENT</div></div>
-  </div>
-</section>
+  </header>
 
-<!-- MANIFESTO TICKER -->
-<div class="manifesto" aria-hidden="true">
-  <div class="manifesto-track">
-    <div class="manifesto-inner">
-      <span>NO CORPORATE BACKING</span><span class="dot">✦</span>
-      <span>PURE PASSION</span><span class="dot">✦</span>
-      <span>BLEEDING INTO EVERY PIXEL</span><span class="dot">✦</span>
-      <span>WHAT WE LACK IN RESOURCES</span><span class="dot">✦</span>
-      <span>WE MAKE UP FOR IN SOUL</span><span class="dot">✦</span>
-      <span>NO CORPORATE BACKING</span><span class="dot">✦</span>
-      <span>PURE PASSION</span><span class="dot">✦</span>
-      <span>BLEEDING INTO EVERY PIXEL</span><span class="dot">✦</span>
-      <span>WHAT WE LACK IN RESOURCES</span><span class="dot">✦</span>
-      <span>WE MAKE UP FOR IN SOUL</span><span class="dot">✦</span>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════ GAMES ══════════════ -->
-<section id="games" class="games">
-  <div class="section-header">
-    <div class="section-tag">// OUR CREATIONS</div>
-    <h2>DARK<br><span class="outline-text">CATALOG</span></h2>
-  </div>
-  <div class="game-showcase">
-    <div class="game-item">
-      <div class="game-num">01</div>
-      <div class="game-info">
-        <div class="game-icon-wrap">🐼</div>
-        <div>
-          <h3>Lost Panda</h3>
-          <p>Innocence lost in digital shadows.</p>
-          <a href="#" class="game-link xp-action" data-xp="10">PLAY ON ITCH.IO <span class="arrow">↗</span></a>
-        </div>
-      </div>
-      <div class="game-tag">RELEASED</div>
-    </div>
-    <div class="game-item">
-      <div class="game-num">02</div>
-      <div class="game-info">
-        <div class="game-icon-wrap">📱</div>
-        <div>
-          <h3>Mobile Nightmares</h3>
-          <p>Pocket-sized terror, everywhere.</p>
-          <a href="#" class="game-link xp-action" data-xp="10">DOWNLOAD <span class="arrow">↗</span></a>
-        </div>
-      </div>
-      <div class="game-tag">RELEASED</div>
-    </div>
-    <!-- Game 3 — links to the immersive scroll section below -->
-    <div class="game-item game-featured" id="hg-teaser">
-      <div class="game-num">03</div>
-      <div class="game-info">
-        <div class="game-icon-wrap hg-icon">🌲</div>
-        <div>
-          <h3>Hansel &amp; Gretel</h3>
-          <p>Where breadcrumbs lead to madness.</p>
-          <div class="featured-badge">● IN DEVELOPMENT</div>
-        </div>
-      </div>
-      <a href="#hg-chapter" class="game-tag game-tag-cta xp-action" data-xp="15">ENTER THE FOREST →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ HANSEL & GRETEL — SCROLL STORY ══════════════ -->
-<section id="hg-chapter" class="hg-scroll">
-
-  <!-- Sticky stage that holds every scene -->
-  <div class="hg-stage">
-
-    <!-- Dark forest background canvas -->
-    <canvas id="forest-canvas"></canvas>
-
-    <!-- Progress crumbs trail (breadcrumbs = progress bar) -->
-    <div class="breadcrumb-trail" id="breadcrumb-trail" aria-hidden="true">
-      <div class="crumb" data-index="0"></div>
-      <div class="crumb" data-index="1"></div>
-      <div class="crumb" data-index="2"></div>
-      <div class="crumb" data-index="3"></div>
-      <div class="crumb" data-index="4"></div>
-    </div>
-
-    <!-- Scene 0 — Title card -->
-    <div class="hg-scene hg-scene--active" data-scene="0">
-      <div class="hg-scene-inner">
-        <div class="hg-eyebrow">ALENITH PRESENTS</div>
-        <h2 class="hg-title">HANSEL<br><span class="hg-amp">&amp;</span><br>GRETEL</h2>
-        <p class="hg-body">A fairy tale dipped in poison.</p>
-        <div class="hg-scroll-cue">↓ FOLLOW THE BREADCRUMBS</div>
+  <!-- HERO -->
+  <section id="about" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow fade-in" style="--delay:.1s">INDEPENDENT HORROR STUDIO</p>
+      <h1 class="hero-title fade-in" style="--delay:.25s">WE CRAFT<br><span class="accent">NIGHTMARES</span></h1>
+      <p class="hero-sub fade-in" style="--delay:.4s">Three dreamers. No sleep. Pure darkness.</p>
+      <div class="hero-cta fade-in" style="--delay:.55s">
+        <a href="#games" class="btn-primary xp-action" data-xp="5">ENTER THE DARK →</a>
+        <a href="#support" class="btn-ghost">JOIN THE COVEN</a>
       </div>
     </div>
+    <div class="hero-stats fade-in" style="--delay:.7s">
+      <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-label">CREATORS</div></div>
+      <div class="stat"><div class="stat-num" data-count="2">0</div><div class="stat-label">SHIPPED</div></div>
+      <div class="stat"><div class="stat-num" data-count="1">0</div><div class="stat-label">IN DEV</div></div>
+    </div>
+  </section>
 
-    <!-- Scene 1 — The forest -->
-    <div class="hg-scene" data-scene="1">
-      <div class="hg-scene-inner hg-scene-inner--split">
-        <div class="hg-text-block">
-          <div class="hg-eyebrow">CHAPTER I</div>
-          <h3 class="hg-chapter-title">INTO THE DARK</h3>
-          <p class="hg-body">The forest doesn't end.<br>It just gets <em>quieter.</em></p>
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-inner">
+        <span>NO CORPORATE BACKING</span><span class="dot">✦</span>
+        <span>PURE PASSION</span><span class="dot">✦</span>
+        <span>BLEEDING INTO EVERY PIXEL</span><span class="dot">✦</span>
+        <span>WHAT WE LACK IN RESOURCES</span><span class="dot">✦</span>
+        <span>WE MAKE UP FOR IN SOUL</span><span class="dot">✦</span>
+        <span>NO CORPORATE BACKING</span><span class="dot">✦</span>
+        <span>PURE PASSION</span><span class="dot">✦</span>
+        <span>BLEEDING INTO EVERY PIXEL</span><span class="dot">✦</span>
+        <span>WHAT WE LACK IN RESOURCES</span><span class="dot">✦</span>
+        <span>WE MAKE UP FOR IN SOUL</span><span class="dot">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAMES -->
+  <section id="games" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">// OUR CREATIONS</p>
+        <h2>DARK <span class="outline-text">CATALOG</span></h2>
+      </div>
+
+      <div class="game-list">
+        <div class="game-item reveal">
+          <span class="game-num">01</span>
+          <div class="game-icon">🐼</div>
+          <div class="game-info">
+            <h3>Lost Panda</h3>
+            <p>Innocence lost in digital shadows.</p>
+            <a href="#" class="game-link xp-action" data-xp="10">PLAY ON ITCH.IO ↗</a>
+          </div>
+          <span class="game-badge">RELEASED</span>
         </div>
-        <div class="hg-visual">
-          <svg class="hg-trees" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-            <g fill="#0a0308" opacity="0.95">
-              <polygon points="200,30 120,220 280,220"/>
-              <polygon points="200,100 100,320 300,320"/>
-              <polygon points="200,180 80,440 320,440"/>
-              <rect x="175" y="440" width="50" height="60"/>
-            </g>
-            <g fill="#060205" opacity="0.9">
-              <polygon points="80,80 30,230 130,230"/>
-              <polygon points="80,140 10,340 150,340"/>
-              <rect x="60" y="340" width="40" height="80"/>
-              <polygon points="320,60 260,220 380,220"/>
-              <polygon points="320,130 250,340 390,340"/>
-              <rect x="300" y="340" width="40" height="80"/>
-            </g>
-            <!-- Eyes in the trees -->
-            <g class="hg-eyes" opacity="0">
-              <ellipse cx="155" cy="160" rx="5" ry="7" fill="#ff2200" opacity="0.8"/>
-              <ellipse cx="250" cy="180" rx="5" ry="7" fill="#ff2200" opacity="0.8"/>
-              <ellipse cx="65"  cy="200" rx="4" ry="6" fill="#ff2200" opacity="0.6"/>
-              <ellipse cx="345" cy="190" rx="4" ry="6" fill="#ff2200" opacity="0.6"/>
-            </g>
-          </svg>
+
+        <div class="game-item reveal">
+          <span class="game-num">02</span>
+          <div class="game-icon">📱</div>
+          <div class="game-info">
+            <h3>Mobile Nightmares</h3>
+            <p>Pocket-sized terror, everywhere.</p>
+            <a href="#" class="game-link xp-action" data-xp="10">DOWNLOAD ↗</a>
+          </div>
+          <span class="game-badge">RELEASED</span>
+        </div>
+
+        <div class="game-item game-featured reveal">
+          <span class="game-num">03</span>
+          <div class="game-icon">🌲</div>
+          <div class="game-info">
+            <h3>Hansel &amp; Gretel</h3>
+            <p>Where breadcrumbs lead to madness.</p>
+            <a href="#hg" class="game-link xp-action" data-xp="15">ENTER THE FOREST →</a>
+          </div>
+          <span class="game-badge game-badge--dev">IN DEV</span>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Scene 2 — The breadcrumbs -->
-    <div class="hg-scene" data-scene="2">
-      <div class="hg-scene-inner">
-        <div class="hg-eyebrow">CHAPTER II</div>
-        <h3 class="hg-chapter-title">THE TRAIL</h3>
-        <p class="hg-body">Leave breadcrumbs.<br>Something else will find them <em>first.</em></p>
-        <div class="hg-crumb-vis" aria-hidden="true">
-          <span class="trail-crumb tc-1">🍞</span>
-          <span class="trail-crumb tc-2">🍞</span>
-          <span class="trail-crumb tc-3">🍞</span>
-          <span class="trail-crumb tc-4">🍞</span>
-          <span class="trail-crumb tc-5 eaten">?</span>
+  <!-- H&G CHAPTER -->
+  <section id="hg" class="hg-section">
+    <div class="hg-sticky">
+      <!-- Forest canvas background -->
+      <canvas id="forest-canvas" aria-hidden="true"></canvas>
+
+      <!-- Progress -->
+      <div class="hg-progress" id="hg-progress" aria-hidden="true">
+        <div class="hg-crumb" data-i="0"></div>
+        <div class="hg-crumb" data-i="1"></div>
+        <div class="hg-crumb" data-i="2"></div>
+        <div class="hg-crumb" data-i="3"></div>
+        <div class="hg-crumb" data-i="4"></div>
+      </div>
+
+      <!-- Scenes -->
+      <div class="hg-scene active" data-scene="0">
+        <div class="hg-scene-content center">
+          <p class="hg-eyebrow">ALENITH PRESENTS</p>
+          <h2 class="hg-title">HANSEL<br><span class="hg-amp">&amp;</span><br>GRETEL</h2>
+          <p class="hg-body">A fairy tale dipped in poison.</p>
+          <p class="scroll-cue">↓ FOLLOW THE BREADCRUMBS</p>
+        </div>
+      </div>
+
+      <div class="hg-scene" data-scene="1">
+        <div class="hg-scene-content split">
+          <div class="hg-text">
+            <p class="hg-eyebrow">CHAPTER I</p>
+            <h3 class="hg-chapter">INTO THE DARK</h3>
+            <p class="hg-body">The forest doesn't end.<br>It just gets <em>quieter.</em></p>
+          </div>
+          <div class="hg-visual">
+            <svg class="hg-trees" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="#0a0308" opacity="0.95">
+                <polygon points="200,30 120,220 280,220"/>
+                <polygon points="200,100 100,320 300,320"/>
+                <polygon points="200,180 80,440 320,440"/>
+                <rect x="175" y="440" width="50" height="60"/>
+              </g>
+              <g fill="#060205" opacity="0.9">
+                <polygon points="80,80 30,230 130,230"/>
+                <polygon points="80,140 10,340 150,340"/>
+                <rect x="60" y="340" width="40" height="80"/>
+                <polygon points="320,60 260,220 380,220"/>
+                <polygon points="320,130 250,340 390,340"/>
+                <rect x="300" y="340" width="40" height="80"/>
+              </g>
+              <g class="hg-eyes" opacity="0">
+                <ellipse cx="155" cy="160" rx="5" ry="7" fill="#ff2200" opacity="0.8"/>
+                <ellipse cx="250" cy="180" rx="5" ry="7" fill="#ff2200" opacity="0.8"/>
+                <ellipse cx="65" cy="200" rx="4" ry="6" fill="#ff2200" opacity="0.6"/>
+                <ellipse cx="345" cy="190" rx="4" ry="6" fill="#ff2200" opacity="0.6"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hg-scene" data-scene="2">
+        <div class="hg-scene-content center">
+          <p class="hg-eyebrow">CHAPTER II</p>
+          <h3 class="hg-chapter">THE TRAIL</h3>
+          <p class="hg-body">Leave breadcrumbs.<br>Something else will find them <em>first.</em></p>
+          <div class="trail-vis" aria-hidden="true">
+            <span class="tc">🍞</span><span class="tc">🍞</span><span class="tc">🍞</span><span class="tc">🍞</span><span class="tc eaten">?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hg-scene" data-scene="3">
+        <div class="hg-scene-content split reverse">
+          <div class="hg-text">
+            <p class="hg-eyebrow">CHAPTER III</p>
+            <h3 class="hg-chapter">THE HOUSE</h3>
+            <p class="hg-body">It smells of gingerbread.<br>It smells of <em>rot.</em></p>
+          </div>
+          <div class="hg-visual">
+            <svg class="hg-house" viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="40" y="140" width="220" height="180" fill="#1a0a0a"/>
+              <polygon points="150,20 20,145 280,145" fill="#0d0505"/>
+              <rect x="120" y="220" width="60" height="100" fill="#2a0f05"/>
+              <rect x="140" y="240" width="8" height="8" rx="4" fill="#8b0000"/>
+              <rect x="60" y="170" width="55" height="45" rx="3" fill="#1a0a00"/>
+              <rect x="185" y="170" width="55" height="45" rx="3" fill="#1a0a00"/>
+              <rect x="62" y="172" width="51" height="41" rx="2" fill="#3d1500" class="win-glow"/>
+              <rect x="187" y="172" width="51" height="41" rx="2" fill="#3d1500" class="win-glow"/>
+              <line x1="80" y1="170" x2="80" y2="215" stroke="#333" stroke-width="2"/>
+              <line x1="95" y1="170" x2="95" y2="215" stroke="#333" stroke-width="2"/>
+              <line x1="205" y1="170" x2="205" y2="215" stroke="#333" stroke-width="2"/>
+              <line x1="220" y1="170" x2="220" y2="215" stroke="#333" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="hg-scene" data-scene="4">
+        <div class="hg-scene-content center">
+          <p class="hg-eyebrow">CHAPTER IV</p>
+          <h3 class="hg-chapter blood">THE TRUTH</h3>
+          <p class="hg-body large">"This isn't the story<br>you remember—"</p>
+          <p class="hg-body reveal-line">"This is the story that<br><em class="pulse-em">remembers you.</em>"</p>
+          <div class="hg-cta">
+            <span class="dev-badge">● IN DEVELOPMENT</span>
+            <p class="hg-sub">Wishlisted by the brave.</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Scene 3 — The house -->
-    <div class="hg-scene" data-scene="3">
-      <div class="hg-scene-inner hg-scene-inner--split hg-scene-inner--reverse">
-        <div class="hg-text-block">
-          <div class="hg-eyebrow">CHAPTER III</div>
-          <h3 class="hg-chapter-title">THE HOUSE</h3>
-          <p class="hg-body">It smells of gingerbread.<br>It smells of <em>rot.</em></p>
+  <!-- STUDIO STORY -->
+  <section class="story-section">
+    <div class="story-sticky">
+      <div class="story-bar"><div id="story-fill"></div></div>
+      <div class="story-slide active" data-slide="0">
+        <span class="slide-n">01</span>
+        <h2>NO BUDGET.</h2>
+        <p>Three people against impossible odds.</p>
+      </div>
+      <div class="story-slide" data-slide="1">
+        <span class="slide-n">02</span>
+        <h2>NO SLEEP.</h2>
+        <p>Nights dissolve into pixels and code.</p>
+      </div>
+      <div class="story-slide" data-slide="2">
+        <span class="slide-n">03</span>
+        <h2>NO COMPROMISE.</h2>
+        <p>Every horror crafted with intention.</p>
+      </div>
+      <div class="story-slide" data-slide="3">
+        <span class="slide-n">04</span>
+        <h2>ONLY SOUL.</h2>
+        <p>And that's everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">// FEED THE NIGHTMARE</p>
+        <h2>JOIN THE <span class="outline-text">COVEN</span></h2>
+        <p class="section-sub">Every dollar whispers: <em>"Keep creating."</em></p>
+      </div>
+      <div class="tier-grid">
+        <div class="tier reveal">
+          <div class="tier-glyph">☽</div>
+          <div class="tier-price">$1</div>
+          <div class="tier-name">SHADOW WALKER</div>
+          <ul>
+            <li>Eternal gratitude</li>
+            <li>Supporter shrine</li>
+            <li>Dev secrets</li>
+          </ul>
+          <button class="tier-btn xp-action" data-xp="25">PLEDGE →</button>
         </div>
-        <div class="hg-visual hg-house-wrap">
-          <svg class="hg-house" viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg">
-            <!-- House body -->
-            <rect x="40" y="140" width="220" height="180" fill="#1a0a0a"/>
-            <!-- Roof -->
-            <polygon points="150,20 20,145 280,145" fill="#0d0505"/>
-            <!-- Door -->
-            <rect x="120" y="220" width="60" height="100" fill="#2a0f05"/>
-            <rect x="140" y="240" width="8" height="8" rx="4" fill="#8b0000"/>
-            <!-- Windows with glow -->
-            <rect x="60"  y="170" width="55" height="45" rx="3" fill="#1a0a00"/>
-            <rect x="185" y="170" width="55" height="45" rx="3" fill="#1a0a00"/>
-            <!-- Candle light flicker in windows -->
-            <rect x="62"  y="172" width="51" height="41" rx="2" fill="#3d1500" class="hg-window-glow"/>
-            <rect x="187" y="172" width="51" height="41" rx="2" fill="#3d1500" class="hg-window-glow"/>
-            <!-- Bars on windows (cage) -->
-            <line x1="80"  y1="170" x2="80"  y2="215" stroke="#333" stroke-width="2"/>
-            <line x1="95"  y1="170" x2="95"  y2="215" stroke="#333" stroke-width="2"/>
-            <line x1="205" y1="170" x2="205" y2="215" stroke="#333" stroke-width="2"/>
-            <line x1="220" y1="170" x2="220" y2="215" stroke="#333" stroke-width="2"/>
-            <!-- Smoke -->
-            <g class="hg-smoke" fill="#1a1a1a" opacity="0.4">
-              <ellipse cx="150" cy="15" rx="8" ry="12"/>
-              <ellipse cx="145" cy="5"  rx="6" ry="9"/>
-            </g>
-          </svg>
-          <div class="hg-house-shadow"></div>
+        <div class="tier reveal">
+          <div class="tier-glyph">☾</div>
+          <div class="tier-price">$5</div>
+          <div class="tier-name">NIGHTMARE KEEPER</div>
+          <ul>
+            <li>All Shadow perks</li>
+            <li>Behind-the-screams</li>
+            <li>Early glimpses</li>
+            <li>Discord role</li>
+          </ul>
+          <button class="tier-btn xp-action" data-xp="25">PLEDGE →</button>
+        </div>
+        <div class="tier reveal">
+          <div class="tier-glyph">⛧</div>
+          <div class="tier-price">$10</div>
+          <div class="tier-name">SOUL BINDER</div>
+          <ul>
+            <li>All Keeper perks</li>
+            <li>Beta access</li>
+            <li>Creative voice</li>
+            <li>Direct dev line</li>
+          </ul>
+          <button class="tier-btn xp-action" data-xp="25">PLEDGE →</button>
+        </div>
+        <div class="tier tier-featured reveal">
+          <div class="tier-glyph">👑</div>
+          <div class="tier-price">$25</div>
+          <div class="tier-name">DARK LORD</div>
+          <ul>
+            <li>All previous gifts</li>
+            <li>Game credits</li>
+            <li>Shape Alenith's future</li>
+            <li>Private audience</li>
+          </ul>
+          <button class="tier-btn xp-action" data-xp="50">PLEDGE →</button>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Scene 4 — The revelation -->
-    <div class="hg-scene" data-scene="4">
-      <div class="hg-scene-inner hg-scene-inner--center">
-        <div class="hg-eyebrow">CHAPTER IV</div>
-        <h3 class="hg-chapter-title hg-chapter-title--blood">THE TRUTH</h3>
-        <p class="hg-body hg-body--large">
-          "This isn't the story<br>you remember—"
-        </p>
-        <p class="hg-body hg-reveal-line">
-          "This is the story that<br><em class="hg-em-blood">remembers you.</em>"
-        </p>
-        <div class="hg-cta-wrap">
-          <div class="hg-status">● IN DEVELOPMENT</div>
-          <p class="hg-notify-label">Wishlisted by the brave.</p>
+  <!-- COMMUNITY -->
+  <section id="community" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">// THE GATHERING</p>
+        <h2>OUR <span class="outline-text">DARK FAMILY</span></h2>
+      </div>
+      <div class="social-grid">
+        <a href="#" class="social-card reveal xp-action" data-xp="5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span class="social-name">INSTAGRAM</span>
+          <span class="social-handle">@alenithverse</span>
+        </a>
+        <a href="#" class="social-card reveal xp-action" data-xp="5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          <span class="social-name">TIKTOK</span>
+          <span class="social-handle">@alenith_horror</span>
+        </a>
+        <a href="#" class="social-card reveal xp-action" data-xp="5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span class="social-name">YOUTUBE</span>
+          <span class="social-handle">Alenith Studios</span>
+        </a>
+        <a href="#" class="social-card social-featured reveal xp-action" data-xp="5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0002 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9554 2.4189-2.1568 2.4189Z"/></svg>
+          <span class="social-name">DISCORD</span>
+          <span class="social-handle">JOIN THE DARKNESS</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">⬡ ALENITH</div>
+        <p>Crafting nightmares since the sleepless nights began.</p>
+        <div class="footer-links">
+          <a href="contact.html">CONTACT</a>
+          <span>·</span>
+          <a href="#about">BACK TO TOP ↑</a>
         </div>
       </div>
     </div>
+  </footer>
 
-  </div><!-- end .hg-stage -->
-</section>
-<!-- ══ END H&G ══ -->
-
-<!-- ══ STUDIO STORY SCROLL ══ -->
-<section class="story-scroll">
-  <div class="story-sticky">
-    <div class="story-progress-bar"><div id="story-progress"></div></div>
-    <div class="story-slide active" data-slide="0">
-      <div class="slide-number">01</div>
-      <h2>NO BUDGET.</h2>
-      <p>Three people against impossible odds.</p>
-    </div>
-    <div class="story-slide" data-slide="1">
-      <div class="slide-number">02</div>
-      <h2>NO SLEEP.</h2>
-      <p>Nights dissolve into pixels and code.</p>
-    </div>
-    <div class="story-slide" data-slide="2">
-      <div class="slide-number">03</div>
-      <h2>NO COMPROMISE.</h2>
-      <p>Every horror crafted with intention.</p>
-    </div>
-    <div class="story-slide" data-slide="3">
-      <div class="slide-number">04</div>
-      <h2>ONLY SOUL.</h2>
-      <p>And that's everything.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ SUPPORT ══════════════ -->
-<section id="support" class="support">
-  <div class="section-header">
-    <div class="section-tag">// FEED THE NIGHTMARE</div>
-    <h2>JOIN<br><span class="outline-text">THE COVEN</span></h2>
-    <p class="section-sub">Every dollar whispers: <em>"Keep creating."</em></p>
-  </div>
-  <div class="tier-grid">
-    <div class="tier-card" data-xp-hover="5">
-      <div class="tier-glyph">☽</div>
-      <div class="tier-price">$1</div>
-      <div class="tier-name">SHADOW WALKER</div>
-      <ul><li>Eternal gratitude</li><li>Supporter shrine</li><li>Dev secrets</li></ul>
-      <button class="tier-btn xp-action" data-xp="25">PLEDGE →</button>
-    </div>
-    <div class="tier-card" data-xp-hover="5">
-      <div class="tier-glyph">☾</div>
-      <div class="tier-price">$5</div>
-      <div class="tier-name">NIGHTMARE KEEPER</div>
-      <ul><li>All Shadow perks</li><li>Behind-the-screams</li><li>Early glimpses</li><li>Discord role</li></ul>
-      <button class="tier-btn xp-action" data-xp="25">PLEDGE →</button>
-    </div>
-    <div class="tier-card" data-xp-hover="5">
-      <div class="tier-glyph">⛧</div>
-      <div class="tier-price">$10</div>
-      <div class="tier-name">SOUL BINDER</div>
-      <ul><li>All Keeper perks</li><li>Beta access</li><li>Creative voice</li><li>Direct dev line</li></ul>
-      <button class="tier-btn xp-action" data-xp="25">PLEDGE →</button>
-    </div>
-    <div class="tier-card tier-featured" data-xp-hover="5">
-      <div class="tier-glyph">👑</div>
-      <div class="tier-price">$25</div>
-      <div class="tier-name">DARK LORD</div>
-      <ul><li>All previous gifts</li><li>Game credits</li><li>Shape Alenith's future</li><li>Private audience</li></ul>
-      <button class="tier-btn xp-action" data-xp="50">PLEDGE →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ COMMUNITY ══════════════ -->
-<section id="community" class="community">
-  <div class="section-header">
-    <div class="section-tag">// THE GATHERING</div>
-    <h2>OUR<br><span class="outline-text">DARK FAMILY</span></h2>
-  </div>
-  <div class="social-row">
-    <a href="#" class="social-card xp-action" data-xp="5">
-      <div class="social-top">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        <span class="social-handle">@alenithverse</span>
-      </div>
-      <div class="social-label">INSTAGRAM</div>
-    </a>
-    <a href="#" class="social-card xp-action" data-xp="5">
-      <div class="social-top">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-        <span class="social-handle">@alenith_horror</span>
-      </div>
-      <div class="social-label">TIKTOK</div>
-    </a>
-    <a href="#" class="social-card xp-action" data-xp="5">
-      <div class="social-top">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        <span class="social-handle">Alenith Studios</span>
-      </div>
-      <div class="social-label">YOUTUBE</div>
-    </a>
-    <a href="#" class="social-card social-featured xp-action" data-xp="5">
-      <div class="social-top">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0002 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9554 2.4189-2.1568 2.4189Z"/></svg>
-        <span class="social-handle">JOIN THE DARKNESS</span>
-      </div>
-      <div class="social-label">DISCORD</div>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">⬡ ALENITH</div>
-    <p>Crafting nightmares since the sleepless nights began.</p>
-    <div class="footer-links">
-      <a href="contact.html">CONTACT</a><span>·</span><a href="#about">BACK TO TOP ↑</a>
-    </div>
-  </div>
-</footer>
-
-<div class="toast" id="toast"></div>
-<script src="script.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
 </body>
 </html>
