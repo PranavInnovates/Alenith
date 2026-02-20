@@ -1,35 +1,36 @@
 'use strict';
 /* ═════════════════════════════════════════════
    ALENITH — script.js v5
-   • Skull cursor — smaller, tilt on velocity, eye-tracking
-   • Canvas trail — fading teal dots
-   • Eye tracking on hero skull
-   • Blood drip dynamic heights
-   • Horror sounds · XP system
-   • All original scroll/canvas functionality
+   • Skull cursor — 30px, velocity tilt
+   • Canvas trail — teal/amber dots
+   • Hero skull eye tracking + 3D parallax tilt
+   • Horror Web Audio sounds
+   • XP system · Scroll scenes · Forest canvas
+   • Contact form handler
+   • Konami code
 ═════════════════════════════════════════════ */
 
-/* ─── SKULL CURSOR + TILT ──────────────────── */
+/* ─── SKULL CURSOR ──────────────────────────── */
 const $skull = document.getElementById('skull-cur');
-let mx = -200, my = -200;
-let pmx = -200, pmy = -200;
-let cursorRAF = false;
+let mx = -300, my = -300;
+let pmx = -300, pmy = -300;
+let rafCursor = false;
 
 document.addEventListener('mousemove', e => {
   pmx = mx; pmy = my;
-  mx = e.clientX; my = e.clientY;
-  if (!cursorRAF) {
-    cursorRAF = true;
+  mx = e.clientX;
+  my = e.clientY;
+  if (!rafCursor) {
+    rafCursor = true;
     requestAnimationFrame(() => {
-      // Velocity-based tilt
       const vx = mx - pmx;
       const vy = my - pmy;
-      const tilt = Math.max(-22, Math.min(22, vx * 0.9));
+      const tilt = Math.max(-24, Math.min(24, vx * 0.9));
       const lean = Math.max(-10, Math.min(10, vy * 0.4));
-      $skull.style.left = mx + 'px';
-      $skull.style.top  = my + 'px';
+      $skull.style.left      = mx + 'px';
+      $skull.style.top       = my + 'px';
       $skull.style.transform = `translate(-10px,-8px) rotate(${tilt}deg) rotateX(${-lean}deg)`;
-      cursorRAF = false;
+      rafCursor = false;
     });
   }
 }, { passive: true });
@@ -37,168 +38,175 @@ document.addEventListener('mousemove', e => {
 document.addEventListener('mouseleave', () => { $skull.style.opacity = '0'; });
 document.addEventListener('mouseenter', () => { $skull.style.opacity = '1'; });
 
-/* ─── CANVAS CURSOR TRAIL ──────────────────── */
+/* ─── CANVAS CURSOR TRAIL ───────────────────── */
 const trailCanvas = document.getElementById('trail-canvas');
-const tctx = trailCanvas.getContext('2d');
+if (trailCanvas) {
+  const tctx = trailCanvas.getContext('2d');
 
-function resizeTrail() {
-  trailCanvas.width  = window.innerWidth;
-  trailCanvas.height = window.innerHeight;
-}
-resizeTrail();
-window.addEventListener('resize', resizeTrail, { passive: true });
-
-const trailPoints = [];
-const MAX_TRAIL = 18;
-
-function animateTrail() {
-  requestAnimationFrame(animateTrail);
-  tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-
-  if (mx > 0 && my > 0) {
-    trailPoints.push({ x: mx, y: my, life: 1 });
-    if (trailPoints.length > MAX_TRAIL) trailPoints.shift();
+  function resizeTrail() {
+    trailCanvas.width  = window.innerWidth;
+    trailCanvas.height = window.innerHeight;
   }
+  resizeTrail();
+  window.addEventListener('resize', resizeTrail, { passive: true });
 
-  for (let i = 0; i < trailPoints.length; i++) {
-    const p = trailPoints[i];
-    p.life -= 0.055;
-    if (p.life <= 0) continue;
-    const r = p.life * 4;
-    // Alternate teal and amber
-    const col = i % 2 === 0
-      ? `rgba(2,117,120,${p.life * 0.55})`
-      : `rgba(253,167,66,${p.life * 0.35})`;
-    tctx.beginPath();
-    tctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-    tctx.fillStyle = col;
-    tctx.fill();
-  }
+  const trailPts = [];
+  const MAX_TRAIL = 20;
+
+  ;(function loopTrail() {
+    requestAnimationFrame(loopTrail);
+    tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+
+    if (mx > 0) trailPts.push({ x: mx, y: my, life: 1 });
+    if (trailPts.length > MAX_TRAIL) trailPts.shift();
+
+    for (let i = 0; i < trailPts.length; i++) {
+      const p = trailPts[i];
+      p.life -= 0.052;
+      if (p.life <= 0) continue;
+      const r = p.life * 3.8;
+      const col = i % 2 === 0
+        ? `rgba(2,117,120,${(p.life * 0.55).toFixed(2)})`
+        : `rgba(253,167,66,${(p.life * 0.38).toFixed(2)})`;
+      tctx.beginPath();
+      tctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      tctx.fillStyle = col;
+      tctx.fill();
+    }
+  })();
 }
-animateTrail();
 
 /* ─── HERO SKULL EYE TRACKING ──────────────── */
 const heroSkull = document.getElementById('hero-skull');
-const pupilL   = document.getElementById('hs-pupil-l');
-const pupilR   = document.getElementById('hs-pupil-r');
-
-// Base pupil positions in SVG coords
+const hsPupilL  = document.getElementById('hs-pupil-l');
+const hsPupilR  = document.getElementById('hs-pupil-r');
 const BASE_L = { cx: 72, cy: 88 };
 const BASE_R = { cx: 128, cy: 88 };
-const MAX_OFFSET = 6;
+const MAX_OFF = 6.5;
 
 function updateEyes() {
-  if (!heroSkull || !pupilL || !pupilR) return;
+  if (!heroSkull || !hsPupilL || !hsPupilR) return;
   const rect = heroSkull.getBoundingClientRect();
-  const cx = rect.left + rect.width / 2;
+  const cx = rect.left + rect.width  / 2;
   const cy = rect.top  + rect.height / 2;
-
   const dx = mx - cx;
   const dy = my - cy;
   const dist = Math.sqrt(dx*dx + dy*dy) || 1;
-  const nx = dx / dist;
-  const ny = dy / dist;
-  const factor = Math.min(1, dist / 300);
-
-  const ox = nx * MAX_OFFSET * factor;
-  const oy = ny * MAX_OFFSET * factor;
-
-  pupilL.setAttribute('cx', BASE_L.cx + ox);
-  pupilL.setAttribute('cy', BASE_L.cy + oy);
-  pupilR.setAttribute('cx', BASE_R.cx + ox);
-  pupilR.setAttribute('cy', BASE_R.cy + oy);
+  const factor = Math.min(1, dist / 280);
+  const ox = (dx / dist) * MAX_OFF * factor;
+  const oy = (dy / dist) * MAX_OFF * factor;
+  hsPupilL.setAttribute('cx', BASE_L.cx + ox);
+  hsPupilL.setAttribute('cy', BASE_L.cy + oy);
+  hsPupilR.setAttribute('cx', BASE_R.cx + ox);
+  hsPupilR.setAttribute('cy', BASE_R.cy + oy);
 }
-
 document.addEventListener('mousemove', updateEyes, { passive: true });
 
-/* ─── HORROR CLICK SOUND ───────────────────── */
-let audioCtx = null;
-function getAudioCtx() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  return audioCtx;
+/* ─── HERO SKULL 3D PARALLAX ────────────────── */
+document.addEventListener('mousemove', e => {
+  const wrap = document.getElementById('hero-skull-wrap');
+  if (!wrap || !heroSkull) return;
+  const rect = wrap.getBoundingClientRect();
+  if (rect.width === 0) return;
+  const rx = ((e.clientX - rect.left - rect.width  / 2) / rect.width)  * 14;
+  const ry = ((e.clientY - rect.top  - rect.height / 2) / rect.height) * 9;
+  heroSkull.style.transform = `perspective(650px) rotateY(${rx}deg) rotateX(${-ry}deg)`;
+}, { passive: true });
+
+/* ─── HORROR SOUND (Web Audio, no files) ──── */
+let _ac = null;
+function getAC() {
+  if (!_ac) _ac = new (window.AudioContext || window.webkitAudioContext)();
+  return _ac;
 }
 const SOUNDS = ['creak','thud','whisper','drip','growl'];
 
-function playHorrorSound() {
+function playHorror() {
   try {
-    const ac  = getAudioCtx();
+    const ac  = getAC();
     const now = ac.currentTime;
     const pick = SOUNDS[Math.floor(Math.random() * SOUNDS.length)];
 
     if (pick === 'creak') {
-      const osc = ac.createOscillator(); const gain = ac.createGain();
-      osc.connect(gain); gain.connect(ac.destination);
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(80, now);
-      osc.frequency.exponentialRampToValueAtTime(38, now + 0.35);
-      gain.gain.setValueAtTime(0.12, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
-      osc.start(now); osc.stop(now + 0.4);
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.type = 'sawtooth';
+      o.frequency.setValueAtTime(80, now);
+      o.frequency.exponentialRampToValueAtTime(38, now+.35);
+      g.gain.setValueAtTime(.12, now);
+      g.gain.exponentialRampToValueAtTime(.001, now+.38);
+      o.start(now); o.stop(now+.4);
     } else if (pick === 'thud') {
-      const osc = ac.createOscillator(); const gain = ac.createGain();
-      osc.connect(gain); gain.connect(ac.destination);
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(140, now);
-      osc.frequency.exponentialRampToValueAtTime(20, now + 0.18);
-      gain.gain.setValueAtTime(0.22, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-      osc.start(now); osc.stop(now + 0.25);
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.type = 'sine';
+      o.frequency.setValueAtTime(140, now);
+      o.frequency.exponentialRampToValueAtTime(20, now+.18);
+      g.gain.setValueAtTime(.22, now);
+      g.gain.exponentialRampToValueAtTime(.001, now+.22);
+      o.start(now); o.stop(now+.25);
     } else if (pick === 'whisper') {
-      const buf = ac.createBuffer(1, ac.sampleRate * 0.18, ac.sampleRate);
-      const data = buf.getChannelData(0);
-      for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.06;
-      const src = ac.createBufferSource(); const fil = ac.createBiquadFilter(); const gain = ac.createGain();
-      src.buffer = buf;
-      fil.type = 'bandpass'; fil.frequency.value = 1800; fil.Q.value = 0.4;
-      src.connect(fil); fil.connect(gain); gain.connect(ac.destination);
-      gain.gain.setValueAtTime(1, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-      src.start(now);
+      const buf = ac.createBuffer(1, ac.sampleRate*.18, ac.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*.06;
+      const s = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+      s.buffer = buf; f.type='bandpass'; f.frequency.value=1800; f.Q.value=.4;
+      s.connect(f); f.connect(g); g.connect(ac.destination);
+      g.gain.setValueAtTime(1, now);
+      g.gain.exponentialRampToValueAtTime(.001, now+.18);
+      s.start(now);
     } else if (pick === 'drip') {
-      const osc = ac.createOscillator(); const gain = ac.createGain();
-      osc.connect(gain); gain.connect(ac.destination);
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(900, now);
-      osc.frequency.exponentialRampToValueAtTime(340, now + 0.14);
-      gain.gain.setValueAtTime(0.09, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-      osc.start(now); osc.stop(now + 0.18);
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.type = 'sine';
+      o.frequency.setValueAtTime(900, now);
+      o.frequency.exponentialRampToValueAtTime(340, now+.14);
+      g.gain.setValueAtTime(.09, now);
+      g.gain.exponentialRampToValueAtTime(.001, now+.16);
+      o.start(now); o.stop(now+.18);
     } else {
-      const osc = ac.createOscillator(); const lfo = ac.createOscillator();
-      const lfoG = ac.createGain(); const gain = ac.createGain();
-      osc.connect(gain); gain.connect(ac.destination);
-      lfo.connect(lfoG); lfoG.connect(osc.frequency);
-      osc.type = 'sawtooth'; osc.frequency.value = 55;
-      lfo.type = 'sine'; lfo.frequency.value = 12; lfoG.gain.value = 22;
-      gain.gain.setValueAtTime(0.15, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
-      lfo.start(now); osc.start(now); lfo.stop(now + 0.3); osc.stop(now + 0.3);
+      const o = ac.createOscillator(), lfo = ac.createOscillator();
+      const lg = ac.createGain(), g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      lfo.connect(lg); lg.connect(o.frequency);
+      o.type='sawtooth'; o.frequency.value=55;
+      lfo.type='sine'; lfo.frequency.value=12; lg.gain.value=22;
+      g.gain.setValueAtTime(.15, now);
+      g.gain.exponentialRampToValueAtTime(.001, now+.28);
+      lfo.start(now); o.start(now); lfo.stop(now+.3); o.stop(now+.3);
     }
   } catch(e) { /* silent */ }
 }
 
-/* ─── CLICK PARTICLE ───────────────────────── */
+/* ─── CLICK PARTICLE ────────────────────────── */
 function spawnParticle(x, y) {
   const p = document.createElement('span');
-  const dx = (Math.random() - 0.5) * 80;
-  const dy = -(35 + Math.random() * 45);
+  const dx = (Math.random() - .5) * 85;
+  const dy = -(32 + Math.random() * 48);
   p.style.cssText = `
     position:fixed;left:${x}px;top:${y}px;
-    font-size:${1 + Math.random() * .6}rem;line-height:1;
+    font-size:${.9 + Math.random() * .6}rem;line-height:1;
     pointer-events:none;z-index:99998;
     transform:translate(-50%,-50%);
     will-change:transform,opacity;
   `;
-  // Mix skull and bone emoji
   p.textContent = Math.random() > .5 ? '💀' : '🦴';
   document.body.appendChild(p);
   requestAnimationFrame(() => {
-    p.style.transition = 'transform .7s cubic-bezier(.2,.8,.4,1), opacity .7s ease';
-    p.style.transform  = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.3)`;
+    p.style.transition = 'transform .68s cubic-bezier(.2,.8,.4,1), opacity .68s ease';
+    p.style.transform  = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.28)`;
     p.style.opacity    = '0';
-    setTimeout(() => p.remove(), 750);
+    setTimeout(() => p.remove(), 720);
   });
 }
+
+/* ─── GLOBAL CLICK ──────────────────────────── */
+document.addEventListener('click', e => {
+  $skull.classList.add('clicking');
+  setTimeout(() => $skull.classList.remove('clicking'), 240);
+  playHorror();
+  spawnParticle(e.clientX, e.clientY);
+});
 
 /* ─── XP SYSTEM ─────────────────────────────── */
 let xp    = +localStorage.getItem('al_xp') || 0;
@@ -220,7 +228,7 @@ function showToast(msg) {
   $toast.textContent = msg;
   $toast.classList.add('show');
   clearTimeout(toastT);
-  toastT = setTimeout(() => $toast.classList.remove('show'), 2600);
+  toastT = setTimeout(() => $toast.classList.remove('show'), 2700);
 }
 
 function gainXP(n, label) {
@@ -249,12 +257,12 @@ window.addEventListener('load', () => {
   }
 });
 
-/* ─── CLICK HANDLER ────────────────────────── */
-document.addEventListener('click', e => {
-  $skull.classList.add('clicking');
-  setTimeout(() => $skull.classList.remove('clicking'), 220);
-  playHorrorSound();
-  spawnParticle(e.clientX, e.clientY);
+/* ─── COMMUNITY HOVER XP ───────────────────── */
+document.querySelectorAll('.soc').forEach(el => {
+  let done = false;
+  el.addEventListener('mouseenter', () => {
+    if (!done) { gainXP(2, 'LURKING IN SHADOWS'); done = true; }
+  });
 });
 
 /* ─── NAV ───────────────────────────────────── */
@@ -275,26 +283,28 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   });
 });
 document.addEventListener('click', e => {
-  if ($links.classList.contains('open') && !$links.contains(e.target) && !$burger.contains(e.target)) {
+  if ($links.classList.contains('open') &&
+      !$links.contains(e.target) &&
+      !$burger.contains(e.target)) {
     $links.classList.remove('open');
     $burger.classList.remove('open');
     $burger.setAttribute('aria-expanded', false);
   }
 });
 
-/* ─── SMOOTH ANCHORS ───────────────────────── */
+/* ─── SMOOTH ANCHORS ────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const t = document.querySelector(a.getAttribute('href'));
     if (!t) return;
     e.preventDefault();
     const xphPx = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--xph')) || 28;
-    const off = $nav.offsetHeight + xphPx + 8;
+    const off = ($nav.offsetHeight || 62) + xphPx + 8;
     window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - off, behavior: 'smooth' });
   });
 });
 
-/* ─── STAT COUNT-UP ────────────────────────── */
+/* ─── STAT COUNT-UP ─────────────────────────── */
 document.querySelectorAll('[data-count]').forEach(el => {
   const target = +el.dataset.count;
   let done = false;
@@ -308,7 +318,7 @@ document.querySelectorAll('[data-count]').forEach(el => {
   }, { threshold: 0.5 }).observe(el);
 });
 
-/* ─── SCROLL REVEAL ────────────────────────── */
+/* ─── SCROLL REVEAL ─────────────────────────── */
 const revObs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -320,13 +330,11 @@ const revObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-/* ─── FOREST CANVAS ────────────────────────── */
+/* ─── FOREST CANVAS ─────────────────────────── */
 const canvas = document.getElementById('hg-canvas');
 const ctx    = canvas.getContext('2d');
 const hgSec  = document.getElementById('hg');
-let cW = 0, cH = 0;
-let forestRAF = null;
-let canvasVisible = false;
+let cW = 0, cH = 0, forestRAF = null, canvasVis = false;
 
 function resizeCanvas() {
   cW = canvas.width  = canvas.offsetWidth;
@@ -340,103 +348,89 @@ window.addEventListener('resize', () => {
 resizeCanvas();
 
 new IntersectionObserver(([e]) => {
-  canvasVisible = e.isIntersecting;
-  if (canvasVisible && !forestRAF) forestRAF = requestAnimationFrame(drawForest);
+  canvasVis = e.isIntersecting;
+  if (canvasVis && !forestRAF) forestRAF = requestAnimationFrame(drawForest);
 }, { threshold: 0 }).observe(hgSec);
 
 const STARS = Array.from({ length: 55 }, (_, i) => ({
-  x: ((i * 73 + 17) % 100) / 100,
-  y: ((i * 47 + 31) % 55) / 100,
-  sp: (i % 4) + 1
+  x: ((i*73+17)%100)/100,
+  y: ((i*47+31)%55)/100,
+  sp: (i%4)+1
 }));
 const FLIES = Array.from({ length: 14 }, () => ({
-  x: Math.random(), y: 0.42 + Math.random() * 0.4,
-  vx: (Math.random() - .5) * 0.00026,
-  vy: (Math.random() - .5) * 0.00016,
-  ph: Math.random() * Math.PI * 2,
-  sp: 0.8 + Math.random() * 1.1
+  x: Math.random(), y: .42 + Math.random()*.4,
+  vx: (Math.random()-.5)*.00026,
+  vy: (Math.random()-.5)*.00016,
+  ph: Math.random()*Math.PI*2,
+  sp: .8 + Math.random()*1.1
 }));
 
-function drawTree(x, y, w, h, r, g, b) {
+function drawTree(x,y,w,h,r,g,b) {
   ctx.fillStyle = `rgb(${r},${g},${b})`;
-  const x0 = x|0, y0 = y|0, w2 = (w/2)|0;
-  for (let l = 0; l < 3; l++) {
-    const ly = (y0 - h*l/3)|0;
-    const lw = (w2 * (1-l*0.18))|0;
+  const x0=x|0, y0=y|0, w2=(w/2)|0;
+  for (let l=0;l<3;l++) {
+    const ly=(y0-h*l/3)|0, lw=(w2*(1-l*.18))|0;
     ctx.beginPath();
-    ctx.moveTo(x0, (ly - h*0.48)|0);
-    ctx.lineTo(x0 - lw, ly);
-    ctx.lineTo(x0 + lw, ly);
+    ctx.moveTo(x0, (ly-h*.48)|0);
+    ctx.lineTo(x0-lw, ly);
+    ctx.lineTo(x0+lw, ly);
     ctx.closePath(); ctx.fill();
   }
-  ctx.fillRect((x0 - w*0.065)|0, y0-14, (w*0.13)|0, 20);
+  ctx.fillRect((x0-w*.065)|0, y0-14, (w*.13)|0, 20);
 }
 
 function drawForest(t) {
-  if (!canvasVisible) { forestRAF = null; return; }
+  if (!canvasVis) { forestRAF = null; return; }
   forestRAF = requestAnimationFrame(drawForest);
-  ctx.clearRect(0, 0, cW, cH);
+  ctx.clearRect(0,0,cW,cH);
 
-  const sky = ctx.createLinearGradient(0, 0, 0, cH);
-  sky.addColorStop(0, '#010810');
-  sky.addColorStop(.55, '#02101a');
-  sky.addColorStop(1,  '#041820');
-  ctx.fillStyle = sky;
-  ctx.fillRect(0, 0, cW, cH);
+  const sky = ctx.createLinearGradient(0,0,0,cH);
+  sky.addColorStop(0,'#010810'); sky.addColorStop(.55,'#02101a'); sky.addColorStop(1,'#041820');
+  ctx.fillStyle = sky; ctx.fillRect(0,0,cW,cH);
 
-  const moonX = (cW*.78)|0, moonY = (cH*.1)|0;
-  ctx.globalAlpha = 0.07;
-  ctx.fillStyle = '#d4c8a8';
-  ctx.beginPath(); ctx.arc(moonX, moonY, 48, 0, Math.PI*2); ctx.fill();
-  ctx.globalAlpha = 0.04;
-  ctx.beginPath(); ctx.arc(moonX, moonY, 28, 0, Math.PI*2); ctx.fill();
-  ctx.globalAlpha = 1;
+  ctx.globalAlpha=.07; ctx.fillStyle='#d4c8a8';
+  ctx.beginPath(); ctx.arc((cW*.78)|0,(cH*.1)|0,48,0,Math.PI*2); ctx.fill();
+  ctx.globalAlpha=.04;
+  ctx.beginPath(); ctx.arc((cW*.78)|0,(cH*.1)|0,28,0,Math.PI*2); ctx.fill();
+  ctx.globalAlpha=1;
 
-  for (let i = 0; i < STARS.length; i++) {
-    const s = STARS[i];
-    const bk = (Math.sin(t*.001*s.sp + i) + 1)*.28;
-    ctx.globalAlpha = bk;
-    ctx.fillStyle = '#c8bea0';
-    ctx.fillRect((s.x*cW)|0, (s.y*cH)|0, 1, 1);
+  for (let i=0;i<STARS.length;i++) {
+    const s=STARS[i], bk=(Math.sin(t*.001*s.sp+i)+1)*.28;
+    ctx.globalAlpha=bk; ctx.fillStyle='#c8bea0';
+    ctx.fillRect((s.x*cW)|0,(s.y*cH)|0,1,1);
   }
-  ctx.globalAlpha = 1;
+  ctx.globalAlpha=1;
 
-  for (let i=0;i<22;i++) { const tx=((i/22)*cW+Math.sin(i*6)*16)|0; drawTree(tx,cH*.8,38,170,2,14,16); }
-  for (let i=0;i<13;i++) { const tx=((i/13)*cW+cW/26)|0; drawTree(tx,cH*.88,54,235,1,8,10); }
-  for (let i=0;i<7;i++)  { const tx=((i/7)*cW+cW/14)|0;  drawTree(tx,cH*1.01,78,295,1,4,5); }
+  for (let i=0;i<22;i++) drawTree(((i/22)*cW+Math.sin(i*6)*16)|0,cH*.8,38,170,2,14,16);
+  for (let i=0;i<13;i++) drawTree(((i/13)*cW+cW/26)|0,cH*.88,54,235,1,8,10);
+  for (let i=0;i<7;i++)  drawTree(((i/7)*cW+cW/14)|0,cH*1.01,78,295,1,4,5);
 
-  const fog = ctx.createLinearGradient(0,cH*.72,0,cH);
-  fog.addColorStop(0,'rgba(4,18,26,0)');
-  fog.addColorStop(1,'rgba(4,18,26,0.6)');
-  ctx.fillStyle = fog;
-  ctx.fillRect(0,cH*.72,cW,cH*.28);
+  const fog=ctx.createLinearGradient(0,cH*.72,0,cH);
+  fog.addColorStop(0,'rgba(4,18,26,0)'); fog.addColorStop(1,'rgba(4,18,26,0.6)');
+  ctx.fillStyle=fog; ctx.fillRect(0,cH*.72,cW,cH*.28);
 
   for (const ff of FLIES) {
-    ff.x += ff.vx; ff.y += ff.vy;
-    if (ff.x<0||ff.x>1) ff.vx*=-1;
-    if (ff.y<.3||ff.y>.9) ff.vy*=-1;
-    const bk = Math.sin(t*.002*ff.sp+ff.ph);
-    if (bk > 0.3) {
-      ctx.globalAlpha = (bk-.3)*.85;
-      ctx.fillStyle = '#fda742';
-      ctx.beginPath();
-      ctx.arc((ff.x*cW)|0,(ff.y*cH)|0,1.5,0,Math.PI*2);
-      ctx.fill();
+    ff.x+=ff.vx; ff.y+=ff.vy;
+    if(ff.x<0||ff.x>1) ff.vx*=-1;
+    if(ff.y<.3||ff.y>.9) ff.vy*=-1;
+    const bk=Math.sin(t*.002*ff.sp+ff.ph);
+    if (bk>.3) {
+      ctx.globalAlpha=(bk-.3)*.85; ctx.fillStyle='#fda742';
+      ctx.beginPath(); ctx.arc((ff.x*cW)|0,(ff.y*cH)|0,1.5,0,Math.PI*2); ctx.fill();
     }
   }
-  ctx.globalAlpha = 1;
+  ctx.globalAlpha=1;
 }
 
 /* ─── H&G SCROLL SCENES ────────────────────── */
 const hgScenes = document.querySelectorAll('.hs');
 const hgDots   = document.querySelectorAll('.hd');
 const N_SC     = hgScenes.length;
-let lastSc = -1;
+let lastSc = -1, hgTop = 0, hgScrollH = 0;
 
-let hgTop = 0, hgScrollH = 0;
 function measureHG() {
   const r = hgSec.getBoundingClientRect();
-  hgTop     = r.top + window.scrollY;
+  hgTop = r.top + window.scrollY;
   hgScrollH = hgSec.offsetHeight - window.innerHeight;
 }
 measureHG();
@@ -459,32 +453,34 @@ setScene(0);
 const storySec    = document.querySelector('.story-section');
 const storySlides = document.querySelectorAll('.ss');
 const $spFill     = document.getElementById('sp-fill');
-let curSS = 0;
+let curSS = 0, ssTop = 0, ssScrollH = 0;
 
-let ssTop = 0, ssScrollH = 0;
 function measureSS() {
   const r = storySec.getBoundingClientRect();
-  ssTop     = r.top + window.scrollY;
+  ssTop = r.top + window.scrollY;
   ssScrollH = storySec.offsetHeight - window.innerHeight;
 }
 measureSS();
 window.addEventListener('resize', measureSS, { passive: true });
 
-/* ─── UNIFIED SCROLL ───────────────────────── */
+/* ─── UNIFIED SCROLL HANDLER ────────────────── */
 let scrollPending = false;
-function onScroll() {
+window.addEventListener('scroll', () => {
   if (scrollPending) return;
   scrollPending = true;
   requestAnimationFrame(() => {
     scrollPending = false;
     const sy = window.scrollY;
+
     $nav.classList.toggle('solid', sy > 50);
 
+    // H&G
     const hgProg = Math.min(Math.max((sy-hgTop)/hgScrollH,0),1);
     if (sy >= hgTop - window.innerHeight && sy <= hgTop+hgScrollH+window.innerHeight) {
       setScene(Math.min(Math.floor(hgProg*N_SC), N_SC-1));
     }
 
+    // Story
     const ssProg = Math.min(Math.max((sy-ssTop)/ssScrollH,0),1);
     if (sy >= ssTop - window.innerHeight && sy <= ssTop+ssScrollH+window.innerHeight) {
       $spFill.style.height = (ssProg*100)+'%';
@@ -500,19 +496,6 @@ function onScroll() {
       }
     }
   });
-}
-window.addEventListener('scroll', onScroll, { passive: true });
-
-/* ─── PARALLAX TILT ON HERO SKULL ─────────── */
-document.addEventListener('mousemove', e => {
-  if (!heroSkull) return;
-  const wrap = document.getElementById('hero-skull-wrap');
-  if (!wrap) return;
-  const rect = wrap.getBoundingClientRect();
-  if (rect.width === 0) return;
-  const rx = ((e.clientX - rect.left - rect.width/2)  / rect.width)  * 12;
-  const ry = ((e.clientY - rect.top  - rect.height/2) / rect.height) * 8;
-  heroSkull.style.transform = `perspective(600px) rotateY(${rx}deg) rotateX(${-ry}deg)`;
 }, { passive: true });
 
 /* ─── CONTACT FORM ──────────────────────────── */
@@ -524,20 +507,12 @@ window.handleSubmit = function(e) {
 };
 
 /* ─── KONAMI CODE ───────────────────────────── */
-const K  = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-let ki   = 0;
+const K = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let ki = 0;
 document.addEventListener('keydown', e => {
   if (e.key === K[ki]) { ki++; if (ki===K.length) { gainXP(999,'☠ DARK GOD AWAKENED'); ki=0; } }
   else ki = 0;
 });
 
-/* ─── HOVER XP ON SOCIAL CARDS ─────────────── */
-document.querySelectorAll('.soc').forEach(el => {
-  let hovered = false;
-  el.addEventListener('mouseenter', () => {
-    if (!hovered) { gainXP(2, 'LURKING IN SHADOWS'); hovered = true; }
-  });
-});
-
-console.log('%cALENITH', 'color:#027578;font-size:32px;font-family:serif;font-weight:bold;');
-console.log('%c☠  ↑↑↓↓←→←→BA  ☠', 'color:#fda742;font-size:14px;');
+console.log('%cALENITH','color:#027578;font-size:32px;font-family:serif;font-weight:bold;');
+console.log('%c☠  ↑↑↓↓←→←→BA  ☠','color:#fda742;font-size:14px;');
