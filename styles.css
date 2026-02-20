@@ -3,6 +3,14 @@
    Teal #027578 · Amber #fda742 · Void #04131a
 ═══════════════════════════════════════════════════════ */
 
+@font-face {
+  font-family: 'Griffy';
+  src: url('Griffy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --amber:    #fda742;
   --amber-d:  #c97d1e;
@@ -20,7 +28,7 @@
   --border:   rgba(2,117,120,.18);
   --border-a: rgba(253,167,66,.16);
   --sans:     'DM Sans', system-ui, sans-serif;
-  --bebas:    'Bebas Neue', sans-serif;
+  --bebas:    'Griffy', sans-serif;
   --xph:      28px;
   --navh:     62px;
 }
@@ -409,16 +417,14 @@ body::before {
   color:var(--ink); margin-bottom:1.5rem;
   text-shadow:0 0 60px rgba(2,117,120,.22);
   text-align:center;
-  /* Each line (HANSEL, &, GRETEL) gets its own line-height */
   line-height:1.05;
   letter-spacing:4px;
 }
-/* The & rendered as its own block line — no extra inherited spacing from .hgt */
 .hgt-amp {
   display:block;
   font-family:var(--bebas);
-  font-size:.3em;            /* visually smaller than HANSEL/GRETEL */
-  line-height:1.2;           /* compact — removes the giant gap */
+  font-size:.3em;
+  line-height:1.2;
   color:var(--amber);
   letter-spacing:.05em;
   text-align:center;
