@@ -234,8 +234,11 @@ function showToast(msg) {
 function gainXP(n, label) {
   xp += n;
   const lv = Math.floor(xp / XP_PER_LV) + 1;
+  const $xpBar = document.querySelector('.xp-bar');
   if (lv > level) {
     level = lv;
+    $xpBar && $xpBar.classList.add('levelup');
+    setTimeout(() => $xpBar && $xpBar.classList.remove('levelup'), 650);
     showToast(`⬆ LEVEL ${level} — SOUL RISING`);
   } else {
     showToast(`+${n} SOUL — ${label || 'DARKNESS GROWS'}`);
@@ -247,7 +250,10 @@ function gainXP(n, label) {
 
 document.querySelectorAll('.xp-action').forEach(el => {
   let used = false;
-  el.addEventListener('click', () => { if (!used) { gainXP(+el.dataset.xp || 10); used = true; } });
+  el.addEventListener('click', () => {
+    if (!used) { gainXP(+el.dataset.xp || 10); used = true; }
+    // navigation proceeds naturally — no preventDefault
+  });
 });
 
 renderXP();
@@ -324,6 +330,13 @@ const revObs = new IntersectionObserver((entries) => {
     if (e.isIntersecting) {
       e.target.style.transitionDelay = (i * 0.045) + 's';
       e.target.classList.add('in');
+      // Trigger glitch on section headings
+      const h2 = e.target.querySelector('h2');
+      if (h2 && e.target.classList.contains('sh')) {
+        h2.dataset.text = h2.textContent;
+        h2.classList.add('glitch-active');
+        setTimeout(() => h2.classList.remove('glitch-active'), 500);
+      }
       revObs.unobserve(e.target);
     }
   });
@@ -516,3 +529,46 @@ document.addEventListener('keydown', e => {
 
 console.log('%cALENITH','color:#027578;font-size:32px;font-family:serif;font-weight:bold;');
 console.log('%c☠  ↑↑↓↓←→←→BA  ☠','color:#fda742;font-size:14px;');
+
+/* ─── CURSOR GLOW ON INTERACTIVE HOVER ─── */
+document.querySelectorAll('a, button, .soc, .tier, .game').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    $skull.style.filter = 'drop-shadow(0 0 12px rgba(253,167,66,.85))';
+  });
+  el.addEventListener('mouseleave', () => {
+    $skull.style.filter = 'drop-shadow(0 0 5px rgba(2,117,120,.6))';
+  });
+});
+
+/* ─── GAME ROW HOVER SOUND ─── */
+document.querySelectorAll('.game').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    try {
+      const ac = getAC(), now = ac.currentTime;
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.type = 'square'; o.frequency.value = 220;
+      g.gain.setValueAtTime(.04, now);
+      g.gain.exponentialRampToValueAtTime(.001, now + .08);
+      o.start(now); o.stop(now + .09);
+    } catch(e){}
+  });
+});
+
+/* ─── WISHLIST BTN EXTRA SPARKLE ─── */
+const wishlistBtns = document.querySelectorAll('.btn-wishlist, .glink-wishlist');
+wishlistBtns.forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    try {
+      const ac = getAC(), now = ac.currentTime;
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.connect(g); g.connect(ac.destination);
+      o.type = 'sine';
+      o.frequency.setValueAtTime(440, now);
+      o.frequency.exponentialRampToValueAtTime(660, now + .12);
+      g.gain.setValueAtTime(.06, now);
+      g.gain.exponentialRampToValueAtTime(.001, now + .14);
+      o.start(now); o.stop(now + .15);
+    } catch(e){}
+  });
+});

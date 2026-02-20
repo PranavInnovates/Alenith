@@ -293,7 +293,40 @@ body::before {
   line-height: .9; color: var(--ink); margin-bottom: 2rem;
 }
 .hero-h em { color: var(--amber); font-style: normal; }
-.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+/* ── WISHLIST BUTTON ── */
+.btn-wishlist {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .72rem 1.6rem;
+  background: transparent;
+  border: 1px solid var(--amber-d);
+  color: var(--amber);
+  text-decoration: none; font-family: var(--bebas);
+  font-size: .82rem; letter-spacing: 3px; border-radius: 2px;
+  transition: background .22s, transform .22s, border-color .22s, box-shadow .22s;
+  position: relative; overflow: hidden;
+}
+.btn-wishlist svg { flex-shrink: 0; animation: heartbeat 1.8s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%,100% { transform: scale(1);    opacity: .85; }
+  14%     { transform: scale(1.3);  opacity: 1; }
+  28%     { transform: scale(1);    opacity: .85; }
+  42%     { transform: scale(1.2);  opacity: 1; }
+  70%     { transform: scale(1);    opacity: .85; }
+}
+.btn-wishlist::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(253,167,66,.14), transparent);
+  transform: translateX(-100%); transition: transform .55s;
+}
+.btn-wishlist:hover::before { transform: translateX(100%); }
+.btn-wishlist:hover {
+  background: rgba(253,167,66,.1);
+  border-color: var(--amber); color: var(--amber);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(253,167,66,.22);
+}
 
 .btn {
   display: inline-block; padding: .72rem 2rem;
@@ -434,11 +467,13 @@ body::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(90deg, rgba(2,117,120,.09), rgba(253,167,66,.03), transparent);
   opacity: 0; transition: opacity .3s;
+  pointer-events: none;
 }
 .game::after {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
   background: var(--teal);
   transform: scaleY(0); transform-origin: bottom; transition: transform .3s ease;
+  pointer-events: none;
 }
 .game:hover::before { opacity: 1; }
 .game:hover::after  { transform: scaleY(1); }
@@ -461,8 +496,26 @@ body::before {
   color: var(--teal); text-decoration: none; white-space: nowrap;
   padding: .5rem 1.1rem; border: 1px solid var(--border); border-radius: 2px;
   transition: color .2s, border-color .2s, background .2s;
+  position: relative; z-index: 2;
 }
 .glink:hover { color: var(--bg); background: var(--teal); border-color: var(--teal); }
+
+/* Wishlist variant in game list — amber accent */
+.glink-wishlist {
+  color: var(--amber) !important;
+  border-color: rgba(253,167,66,.3) !important;
+  animation: wishlistPulse 2.5s ease-in-out infinite;
+}
+.glink-wishlist:hover {
+  color: var(--bg) !important;
+  background: var(--amber) !important;
+  border-color: var(--amber) !important;
+  box-shadow: 0 0 18px rgba(253,167,66,.35);
+}
+@keyframes wishlistPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(253,167,66,0); }
+  50%     { box-shadow: 0 0 0 4px rgba(253,167,66,.12); }
+}
 .gbadge {
   font-family: var(--bebas); font-size: .58rem; letter-spacing: 3px;
   padding: .28rem .8rem; border: 1px solid var(--border); color: var(--ink-dd);
@@ -503,10 +556,21 @@ body::before {
 }
 .hgt {
   font-family: var(--griffy); font-size: clamp(3.5rem, 12vw, 9rem);
-  line-height: .85; color: var(--ink); margin-bottom: 1.5rem;
+  line-height: .88; color: var(--ink); margin-bottom: 1.5rem;
   text-shadow: 0 0 60px rgba(2,117,120,.22);
+  text-align: center;
 }
-.hgt span { color: var(--amber); display: block; font-size: .5em; margin-left: .1em; }
+/* & — same visual weight as HANSEL/GRETEL but smaller, zero extra spacing */
+.hgt-amp {
+  color: var(--amber);
+  display: block;
+  font-size: .35em;
+  line-height: .9;
+  margin: .12em auto;
+  letter-spacing: 0;
+  text-align: center;
+  width: 100%;
+}
 .hgch {
   font-family: var(--griffy); font-size: clamp(2rem, 5.5vw, 4.5rem);
   color: var(--ink); line-height: .9; margin-bottom: 1.2rem;
@@ -812,13 +876,61 @@ body::before {
 .foot-bottom span {
   font-family: var(--bebas); font-size: .68rem; letter-spacing: 3px; color: var(--ink-dd);
 }
+.foot-bottom-right {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+
+/* Steam wishlist button in footer */
+.steam-btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-family: var(--bebas); font-size: .75rem; letter-spacing: 3px;
+  color: var(--amber); text-decoration: none;
+  border: 1px solid rgba(253,167,66,.35); padding: .6rem 1.4rem; border-radius: 2px;
+  background: rgba(253,167,66,.06);
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .2s;
+  position: relative; overflow: hidden;
+}
+.steam-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(253,167,66,.1), transparent);
+  transform: translateX(-100%);
+  animation: steamSheen 3s ease-in-out infinite;
+}
+@keyframes steamSheen {
+  0%,60%,100% { transform: translateX(-100%); }
+  80%          { transform: translateX(100%); }
+}
+.steam-btn:hover {
+  background: var(--amber); color: var(--bg);
+  border-color: var(--amber);
+  box-shadow: 0 0 20px rgba(253,167,66,.3);
+  transform: translateY(-2px);
+}
+.steam-btn svg { flex-shrink: 0; }
+
+/* Back to top — teal glow */
 .back-top {
   font-family: var(--bebas); font-size: .85rem; letter-spacing: 3px;
   color: var(--teal); text-decoration: none;
   border: 1px solid var(--border); padding: .6rem 1.6rem; border-radius: 2px;
-  transition: background .2s, color .2s, border-color .2s;
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .2s;
+  position: relative; overflow: hidden;
 }
-.back-top:hover { background: var(--teal); color: var(--ink); border-color: var(--teal); }
+.back-top::before {
+  content: '';
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--amber));
+  transition: width .3s;
+}
+.back-top:hover::before { width: 100%; }
+.back-top:hover {
+  background: var(--teal); color: var(--bg);
+  border-color: var(--teal);
+  box-shadow: 0 0 18px rgba(2,117,120,.35);
+  transform: translateY(-2px);
+}
 
 /* ═══════════════════════════════════
    TOAST
@@ -834,6 +946,138 @@ body::before {
   text-overflow: ellipsis; overflow: hidden;
 }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ═══════════════════════════════════
+   HORROR GAMING EXTRAS
+═══════════════════════════════════ */
+
+/* Glitch flicker on section headings when they enter view */
+.sh h2 {
+  font-family: var(--griffy); font-size: clamp(2.2rem, 5vw, 4.2rem);
+  color: var(--ink); line-height: 1; letter-spacing: 1px;
+  position: relative;
+}
+.sh h2.glitch-active::before,
+.sh h2.glitch-active::after {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0; width: 100%;
+  overflow: hidden; pointer-events: none;
+}
+.sh h2.glitch-active::before {
+  color: var(--teal); animation: glitchTop .4s steps(1) forwards;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+.sh h2.glitch-active::after {
+  color: var(--amber); animation: glitchBot .4s steps(1) forwards;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+@keyframes glitchTop {
+  0%  { transform: translateX(-3px); opacity: .8; }
+  33% { transform: translateX(3px);  opacity: .6; }
+  66% { transform: translateX(-1px); opacity: .4; }
+  100%{ transform: translateX(0);    opacity: 0; }
+}
+@keyframes glitchBot {
+  0%  { transform: translateX(3px);  opacity: .8; }
+  33% { transform: translateX(-3px); opacity: .6; }
+  66% { transform: translateX(2px);  opacity: .4; }
+  100%{ transform: translateX(0);    opacity: 0; }
+}
+
+/* Tier card — energy recharge bar on hover */
+.tier::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--teal), var(--amber));
+  transition: width .6s ease;
+}
+.tier:hover::after { width: 100%; }
+
+/* Game row — scanline sweep on hover */
+.game-hot .gico {
+  filter: drop-shadow(0 0 8px rgba(253,167,66,.5));
+  animation: iconPulse 2s ease-in-out infinite;
+}
+@keyframes iconPulse {
+  0%,100% { filter: drop-shadow(0 0 4px rgba(253,167,66,.3)); }
+  50%      { filter: drop-shadow(0 0 12px rgba(253,167,66,.7)); }
+}
+
+/* Story section numbers — flicker */
+.ss span {
+  display: block; font-family: var(--bebas); font-size: .68rem;
+  letter-spacing: 5px; color: var(--teal); margin-bottom: 1.2rem;
+  text-shadow: 0 0 8px rgba(2,117,120,.5);
+}
+.ss.active span { animation: neonFlicker 4s ease-in-out infinite 1s; }
+@keyframes neonFlicker {
+  0%,19%,21%,23%,25%,54%,56%,100% {
+    text-shadow: 0 0 8px rgba(2,117,120,.5), 0 0 20px rgba(2,117,120,.3);
+    opacity: 1;
+  }
+  20%,22%,24%,55% {
+    text-shadow: none; opacity: .6;
+  }
+}
+
+/* Horror cursor — extra glow when hovering interactive elements */
+a:hover ~ #skull-cur,
+button:hover ~ #skull-cur { filter: drop-shadow(0 0 10px rgba(253,167,66,.8)); }
+
+/* Ambient particle emitter pseudo-elements on hero */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle 1px at 15% 40%, rgba(253,167,66,.3) 0%, transparent 1px),
+    radial-gradient(circle 1px at 82% 28%, rgba(2,117,120,.4) 0%, transparent 1px),
+    radial-gradient(circle 1px at 45% 72%, rgba(253,167,66,.2) 0%, transparent 1px),
+    radial-gradient(circle 1px at 68% 55%, rgba(2,117,120,.3) 0%, transparent 1px),
+    radial-gradient(circle 1px at 28% 85%, rgba(253,167,66,.25) 0%, transparent 1px);
+  animation: ambientDrift 8s ease-in-out infinite;
+}
+@keyframes ambientDrift {
+  0%,100% { opacity: .4; transform: translateY(0); }
+  50%      { opacity: .9; transform: translateY(-6px); }
+}
+
+/* Contact section — form field focus glow line */
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--teal);
+  background: rgba(2,117,120,.08);
+  box-shadow: 0 0 0 2px rgba(2,117,120,.12), 0 4px 16px rgba(2,117,120,.1);
+}
+
+/* Social cards — horror scan line on hover */
+.soc::before {
+  content: '';
+  position: absolute; top: -100%; left: 0; right: 0; height: 100%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(2,117,120,.06) 50%,
+    transparent 100%);
+  transition: top .5s ease; pointer-events: none; z-index: 0;
+}
+.soc:hover::before { top: 100%; }
+
+/* Ticker dot emoji pulse */
+.ticker-track .dot { animation: dotPop 1.2s ease-in-out infinite; }
+.ticker-track .dot:nth-child(4n)   { animation-delay: .3s; }
+.ticker-track .dot:nth-child(4n+2) { animation-delay: .6s; }
+.ticker-track .dot:nth-child(4n+3) { animation-delay: .9s; }
+@keyframes dotPop {
+  0%,100% { transform: scale(1);   opacity: .5; }
+  50%     { transform: scale(1.4); opacity: 1; }
+}
+
+/* XP level-up flash */
+@keyframes xpFlash {
+  0%   { background: rgba(253,167,66,.3); }
+  100% { background: transparent; }
+}
+.xp-bar.levelup { animation: xpFlash .6s ease; }
 
 /* ═══════════════════════════════════
    RESPONSIVE
@@ -886,6 +1130,7 @@ body::before {
 
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .foot-bottom { flex-direction: column; text-align: center; }
+  .foot-bottom-right { flex-direction: column; align-items: center; }
 
   .horror-deco { display: none; }
   #trail-canvas { display: none; }
